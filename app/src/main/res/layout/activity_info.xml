@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:transitionName="fabTrans1"
-    tools:context=".InfoActivity"
+    tools:context=".Activity.InfoActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <TextView

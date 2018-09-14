@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver;
+package com.wedevelopapps.whatsappstatussaver.Activity;
 
 
 import android.graphics.Typeface;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
+import com.wedevelopapps.whatsappstatussaver.R;
 
 public class InfoActivity extends AppCompatActivity {
 

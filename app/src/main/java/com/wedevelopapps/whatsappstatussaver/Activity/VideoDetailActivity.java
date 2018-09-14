@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver;
+package com.wedevelopapps.whatsappstatussaver.Activity;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import com.wedevelopapps.whatsappstatussaver.R;
 
 import org.apache.commons.io.FileUtils;
 

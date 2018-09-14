@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver;
+package com.wedevelopapps.whatsappstatussaver.Fragment;
 
 
 import android.content.ContentValues;
@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.wedevelopapps.whatsappstatussaver.Activity.PicDetail;
+import com.wedevelopapps.whatsappstatussaver.R;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;

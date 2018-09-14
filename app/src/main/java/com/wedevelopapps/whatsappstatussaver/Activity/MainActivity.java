@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver;
+package com.wedevelopapps.whatsappstatussaver.Activity;
 
 import android.Manifest;
 import android.app.AlarmManager;
@@ -18,6 +18,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
+
+import com.wedevelopapps.whatsappstatussaver.R;
+import com.wedevelopapps.whatsappstatussaver.SelectionsPageAdapter;
 
 import co.mobiwise.materialintro.shape.Focus;
 import co.mobiwise.materialintro.shape.FocusGravity;
