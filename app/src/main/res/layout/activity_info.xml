@@ -37,7 +37,7 @@
         android:layout_marginTop="8dp"
         android:text="Triple A Studio"
         android:textColor="#666666"
-        android:textSize="50sp"
+        android:textSize="55sp"
         android:textStyle="bold|italic"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
