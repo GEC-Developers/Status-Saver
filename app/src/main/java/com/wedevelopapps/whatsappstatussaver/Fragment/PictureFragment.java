@@ -198,7 +198,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
 
                 imgV = itemView.findViewById(R.id.imageView);
                 imgB = itemView.findViewById(R.id.imgBdon);
-                fab1 = itemView.findViewById(R.id.fabShare);
+                fab1 = itemView.findViewById(R.id.bmb);
 
             }
         }

@@ -6,6 +6,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -20,8 +23,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
+import com.nightonke.boommenu.BoomButtons.HamButton;
+import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
+import com.nightonke.boommenu.BoomMenuButton;
+import com.nightonke.boommenu.ButtonEnum;
+import com.nightonke.boommenu.Piece.PiecePlaceEnum;
+import com.nightonke.boommenu.Util;
 import com.wedevelopapps.whatsappstatussaver.R;
 import com.wedevelopapps.whatsappstatussaver.SelectionsPageAdapter;
+
+import java.util.ArrayList;
 
 import co.mobiwise.materialintro.shape.Focus;
 import co.mobiwise.materialintro.shape.FocusGravity;
@@ -34,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     private SelectionsPageAdapter mSectionPageAdapter;
+    ArrayList<Integer> imageIDList;
+    ArrayList<String> titleList;
+    private BoomMenuButton bmb;
 
 
     @Override
@@ -55,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,39 +95,70 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         //setting up view pager
         mViewPager =  findViewById(R.id.viewPager);
         mSectionPageAdapter = new SelectionsPageAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSectionPageAdapter);
 
-        fabInfo = findViewById(R.id.fabInfo);
-        fabShare = findViewById(R.id.fabShare);
+        bmb = findViewById(R.id.bmb);
+        imageIDList = new ArrayList<>();
+        titleList = new ArrayList<>();
+        setInitialData();
+        assert bmb != null;
 
-        fabInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),InfoActivity.class);
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,fabInfo,"fabTrans");
+        for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
 
-                startActivity(i,activityOptionsCompat.toBundle());
-            }
-        });
+            HamButton.Builder SavedGallery = new HamButton.Builder()
+                    .normalImageRes(imageIDList.get(i))
+                    .imageRect(new Rect(20, 15, Util.dp2px(50), Util.dp2px(50)))
+                    .shadowEffect(true)
+                    .normalText(titleList.get(i))
+                    .typeface(Typeface.DEFAULT_BOLD)
+                    .textSize(22)
+                    .listener(new OnBMClickListener() {
+                        @Override
+                        public void onBoomButtonClick(int index) {
+                            if (index == 0) {
+                                Toast.makeText(MainActivity.this, "Images", Toast.LENGTH_SHORT).show();
 
-        fabShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String shareBody = "Download Whatsapp status using PLAYSTORE LINK";
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Songs of Zion ");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                startActivity(Intent.createChooser(sharingIntent, "Share via"));
-            }
-        });
+                            } else if (index == 1) {
+                                Toast.makeText(MainActivity.this, "Video", Toast.LENGTH_SHORT).show();
+
+                            } else if (index == 2) {
+                                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                sharingIntent.setType("text/plain");
+                                String shareBody = "Download WhatsApp Status using PLAYSTORE LINK";
+                                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Songs of Zion ");
+                                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                            } else if (index == 3) {
+                                Intent i = new Intent(getApplicationContext(), InfoActivity.class);
+                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, bmb, "fabTrans");
+
+                                startActivity(i, activityOptionsCompat.toBundle());
+                            }
+                        }
+                    });
+
+            bmb.addBuilder(SavedGallery);
+        }
 
         mTabLayout =  findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
+
+
+    }
+
+    private void setInitialData() {
+        imageIDList.add(R.drawable.ic_image_black_24dp);
+        imageIDList.add(R.drawable.ic_video_library_black_24dp);
+        imageIDList.add(R.drawable.ic_share_black_24dp);
+        imageIDList.add(R.drawable.ic_error_outline_black_24dp);
+
+        titleList.add("Saved Images");
+        titleList.add("Saved Video");
+        titleList.add("Share This App");
+        titleList.add("About Us");
 
 
     }
