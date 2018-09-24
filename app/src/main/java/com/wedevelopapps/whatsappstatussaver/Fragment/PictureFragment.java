@@ -10,8 +10,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,8 +50,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
     RecyclerView.Adapter mReAdapter;
     GridLayoutManager gLay;
     TextView tv;
-    FrameLayout dispLayout;
-    RelativeLayout listPicLayout;
+    FrameLayout ispLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,8 +58,6 @@ public class PictureFragment extends android.support.v4.app.Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_picture, container, false);
         recyclerView =  v.findViewById(R.id.picturesRecView);
-        listPicLayout =v.findViewById(R.id.list_pic);
-        dispLayout=v.findViewById(R.id.disp);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(30);
         recyclerView.setDrawingCacheEnabled(true);
@@ -170,24 +164,17 @@ public class PictureFragment extends android.support.v4.app.Fragment {
                 }
             });
 
-            /*
             holder.imgV.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     Intent intent = new Intent(getContext(),PicDetail.class);
                     intent.putExtra("dataKey",iri.toString());
                     intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),holder.imgV,"imageViewTrans1");
 
                     startActivity(intent,activityOptionsCompat.toBundle());
-
-
-
-
                 }
             });
-            */
         }
 
         @Override
@@ -199,26 +186,18 @@ public class PictureFragment extends android.support.v4.app.Fragment {
             this.muList = mylist;
         }
 
-        class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        class MyHolder extends RecyclerView.ViewHolder{
             ImageView imgV;
             ImageButton imgB;
             FloatingActionButton fab1;
             public MyHolder(View itemView) {
                 super(itemView);
+
                 imgV = itemView.findViewById(R.id.imageView);
                 imgB = itemView.findViewById(R.id.imgBdon);
                 fab1 = itemView.findViewById(R.id.bmb);
-                imgV.setOnClickListener(this);
-            }
 
-            @Override
-            public void onClick(View view) {
-                int p = getAdapterPosition();
-                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.disp, new PicDisplay());
-                fragmentTransaction.commit();
             }
-
         }
 
     }
