@@ -50,7 +50,6 @@ public class PictureFragment extends android.support.v4.app.Fragment {
     RecyclerView.Adapter mReAdapter;
     GridLayoutManager gLay;
     TextView tv;
-    FrameLayout ispLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
