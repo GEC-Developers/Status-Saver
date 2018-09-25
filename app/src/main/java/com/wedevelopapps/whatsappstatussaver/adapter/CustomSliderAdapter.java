@@ -18,26 +18,27 @@ import com.squareup.picasso.Picasso;
 import com.wedevelopapps.whatsappstatussaver.R;
 
 import java.io.File;
+import java.util.List;
 
 
 public class CustomSliderAdapter extends PagerAdapter{
 
-        Context context;
-    //File images[];
-    File images;
+    Context context;
+    File images[];
+    List<File> list;
 
     LayoutInflater layoutInflater;
 
 
-        public CustomSliderAdapter(Context context, File images) {
+        public CustomSliderAdapter(Context context, List<File> list) {
             this.context = context;
-            this.images = images;
+            this.list = list;
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public int getCount() {
-            return 1;
+            return list.size();
         }
 
         @Override
@@ -50,7 +51,7 @@ public class CustomSliderAdapter extends PagerAdapter{
             View itemView = layoutInflater.inflate(R.layout.item, container, false);
 
             PhotoView imageView =  itemView.findViewById(R.id.picDetImg);
-            Picasso.with(context).load(images).networkPolicy(NetworkPolicy.OFFLINE).into(imageView);
+            Picasso.with(context).load(list.get(position)).networkPolicy(NetworkPolicy.OFFLINE).into(imageView);
 
 
            // imageView.setImageResource(images[position]);

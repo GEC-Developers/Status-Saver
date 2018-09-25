@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,9 +23,13 @@ import com.wedevelopapps.whatsappstatussaver.R;
 import com.wedevelopapps.whatsappstatussaver.adapter.CustomSliderAdapter;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.comparator.LastModifiedFileComparator;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import co.mobiwise.materialintro.shape.Focus;
 import co.mobiwise.materialintro.shape.FocusGravity;
@@ -38,7 +43,6 @@ public class PicDetail extends AppCompatActivity {
     Uri iri2;
     CustomSliderAdapter myCustomPagerAdapter;
     ViewPager viewPager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,10 +113,42 @@ public class PicDetail extends AppCompatActivity {
         });
 
 
-        myCustomPagerAdapter = new CustomSliderAdapter(this, f);
+        myCustomPagerAdapter = new CustomSliderAdapter(this, fetchImages());
         viewPager.setAdapter(myCustomPagerAdapter);
 
     }
+
+
+    List fetchImages(){
+        String data[] = new String[0];
+        List<File> muList = new ArrayList<File>();
+        try {
+            String path = Environment.getExternalStorageDirectory().toString() + "/WhatsApp/Media/.Statuses";
+            Log.d("test", "onStart: " + path);
+            File dir = new File(path);
+            File[] files = dir.listFiles();
+
+            Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+            for (int i = 0; i < files.length; i++) {
+
+                if(files[i].getName().endsWith(".jpg")||files[i].getName().endsWith(".png")){
+
+                    muList.add(files[i]);
+
+                }
+
+            }
+
+
+
+        }catch (Exception ex){
+            Toast.makeText(this,ex.getMessage().toString(),Toast.LENGTH_LONG).show();
+        }
+
+        return muList;
+    }
+
+
 
     @Override
     protected void onStart() {
