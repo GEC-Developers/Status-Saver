@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,12 +63,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         gLay = new GridLayoutManager(getContext(),2);
         tv= v.findViewById(R.id.statTxt2);
-
-
-
         recyclerView.setLayoutManager(gLay);
-
-
 
         String data[] = new String[0];
         List<String> muList = new ArrayList<String>();

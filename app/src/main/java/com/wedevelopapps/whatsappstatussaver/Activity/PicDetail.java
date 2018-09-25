@@ -7,23 +7,29 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.wedevelopapps.whatsappstatussaver.R;
+import com.wedevelopapps.whatsappstatussaver.adapter.CustomSliderAdapter;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.comparator.LastModifiedFileComparator;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import co.mobiwise.materialintro.shape.Focus;
 import co.mobiwise.materialintro.shape.FocusGravity;
@@ -35,12 +41,14 @@ public class PicDetail extends AppCompatActivity {
     FloatingActionButton downloadFab, shareFab;
     Bitmap bmap;
     Uri iri2;
+    CustomSliderAdapter myCustomPagerAdapter;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_detail);
-
+        viewPager = (ViewPager)findViewById(R.id.viewPager);
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
             return;
@@ -51,16 +59,17 @@ public class PicDetail extends AppCompatActivity {
         iri2 = Uri.parse(data);
         downloadFab = findViewById(R.id.DownloadFab);
         shareFab = findViewById(R.id.shareFab);
-       // imageView = findViewById(R.id.picDetImg);
-        PhotoView imageView = findViewById(R.id.picDetImg);
+
+        // imageView = findViewById(R.id.picDetImg);
+        //PhotoView imageView = findViewById(R.id.picDetImg);
 
 
         File f = new File(data);
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
 
-        imageView.setMinimumHeight(display.widthPixels);
-        Picasso.with(getApplicationContext()).load(f).networkPolicy(NetworkPolicy.OFFLINE).into(imageView);
+        //imageView.setMinimumHeight(display.widthPixels);
+        //Picasso.with(getApplicationContext()).load(f).networkPolicy(NetworkPolicy.OFFLINE).into(imageView);
 
         downloadFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +111,44 @@ public class PicDetail extends AppCompatActivity {
 
             }
         });
+
+
+        myCustomPagerAdapter = new CustomSliderAdapter(this, fetchImages());
+        viewPager.setAdapter(myCustomPagerAdapter);
+
     }
+
+
+    List fetchImages(){
+        String data[] = new String[0];
+        List<File> muList = new ArrayList<File>();
+        try {
+            String path = Environment.getExternalStorageDirectory().toString() + "/WhatsApp/Media/.Statuses";
+            Log.d("test", "onStart: " + path);
+            File dir = new File(path);
+            File[] files = dir.listFiles();
+
+            Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+            for (int i = 0; i < files.length; i++) {
+
+                if(files[i].getName().endsWith(".jpg")||files[i].getName().endsWith(".png")){
+
+                    muList.add(files[i]);
+
+                }
+
+            }
+
+
+
+        }catch (Exception ex){
+            Toast.makeText(this,ex.getMessage().toString(),Toast.LENGTH_LONG).show();
+        }
+
+        return muList;
+    }
+
+
 
     @Override
     protected void onStart() {

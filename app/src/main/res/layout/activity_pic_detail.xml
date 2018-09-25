@@ -41,20 +41,9 @@
         app:srcCompat="@drawable/ic_share_black_24dp"
         tools:ignore="VectorDrawableCompat" />
 
-
-    <com.github.chrisbanes.photoview.PhotoView
-        android:transitionName="imageViewTrans1"
-        android:id="@+id/picDetImg"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="false"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="VectorDrawableCompat" />
-
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
