@@ -51,19 +51,19 @@ public class PicDetail extends AppCompatActivity {
         setContentView(R.layout.activity_pic_detail);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
 
-
+        String posString = getIntent().getStringExtra("pos").toString();
+        try {
+            int pos = Integer.parseInt(posString);
+        } catch (Exception e) {
+            Log.d("Error", "not parceable Inet");
+        }
         downloadFab = findViewById(R.id.DownloadFab);
         shareFab = findViewById(R.id.shareFab);
-
-        // imageView = findViewById(R.id.picDetImg);
-        //PhotoView imageView = findViewById(R.id.picDetImg);
 
 
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
 
-        //imageView.setMinimumHeight(display.widthPixels);
-        //Picasso.with(getApplicationContext()).load(f).networkPolicy(NetworkPolicy.OFFLINE).into(imageView);
 
 
         myCustomPagerAdapter = new CustomSliderAdapter(this, fetchImages());

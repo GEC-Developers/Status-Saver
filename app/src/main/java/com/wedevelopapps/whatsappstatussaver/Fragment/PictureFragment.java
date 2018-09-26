@@ -191,7 +191,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
             public void onClick(View view) {
 
                 Intent intent = new Intent(getContext(),PicDetail.class);
-                intent.putExtra("pos",getAdapterPosition());
+                intent.putExtra("pos", "" + getAdapterPosition());
                 getContext().startActivity(intent);
             }
 
