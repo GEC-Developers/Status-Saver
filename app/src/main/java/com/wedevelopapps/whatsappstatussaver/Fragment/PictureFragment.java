@@ -65,7 +65,6 @@ public class PictureFragment extends android.support.v4.app.Fragment {
         tv= v.findViewById(R.id.statTxt2);
         recyclerView.setLayoutManager(gLay);
 
-        String data[] = new String[0];
         List<String> muList = new ArrayList<String>();
         try {
             String path = Environment.getExternalStorageDirectory().toString() + "/WhatsApp/Media/.Statuses";
@@ -163,17 +162,6 @@ public class PictureFragment extends android.support.v4.app.Fragment {
                 }
             });
 
-            holder.imgV.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getContext(),PicDetail.class);
-                    intent.putExtra("dataKey",iri.toString());
-                    intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),holder.imgV,"imageViewTrans1");
-
-                    startActivity(intent,activityOptionsCompat.toBundle());
-                }
-            });
         }
 
         @Override
@@ -185,7 +173,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
             this.muList = mylist;
         }
 
-        class MyHolder extends RecyclerView.ViewHolder{
+        class MyHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
             ImageView imgV;
             ImageButton imgB;
             FloatingActionButton fab1;
@@ -195,8 +183,20 @@ public class PictureFragment extends android.support.v4.app.Fragment {
                 imgV = itemView.findViewById(R.id.imageView);
                 imgB = itemView.findViewById(R.id.imgBdon);
                 fab1 = itemView.findViewById(R.id.bmb);
+                imgV.setOnClickListener(this);
 
             }
+
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getContext(),PicDetail.class);
+                intent.putExtra("pos",getAdapterPosition());
+                getContext().startActivity(intent);
+            }
+
+
+
         }
 
     }

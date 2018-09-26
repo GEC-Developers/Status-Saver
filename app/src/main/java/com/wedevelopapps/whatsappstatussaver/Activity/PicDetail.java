@@ -44,19 +44,14 @@ public class PicDetail extends AppCompatActivity {
     CustomSliderAdapter myCustomPagerAdapter;
     ViewPager viewPager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_detail);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
-        Bundle bundle = getIntent().getExtras();
-        if (bundle == null) {
-            return;
-        }
-        final String data = bundle.getString("dataKey");
 
 
-        iri2 = Uri.parse(data);
         downloadFab = findViewById(R.id.DownloadFab);
         shareFab = findViewById(R.id.shareFab);
 
@@ -64,53 +59,11 @@ public class PicDetail extends AppCompatActivity {
         //PhotoView imageView = findViewById(R.id.picDetImg);
 
 
-        File f = new File(data);
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
 
         //imageView.setMinimumHeight(display.widthPixels);
         //Picasso.with(getApplicationContext()).load(f).networkPolicy(NetworkPolicy.OFFLINE).into(imageView);
-
-        downloadFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                File f1, f2;
-                f1 = new File(Uri.parse(data).toString());
-                String fname = f1.getName();
-                f2 = new File(Environment.getExternalStorageDirectory() + "/WhatsAppStatus/Images/");
-                f2.mkdirs();
-
-                try {
-                    FileUtils.copyFileToDirectory(f1, f2);
-                    ContentValues values = new ContentValues();
-                    values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
-                    values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-                    values.put(MediaStore.MediaColumns.DATA, f2.toString() + "/" + fname);
-                    getApplicationContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                } finally {
-                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
-                }
-
-
-            }
-        });
-
-
-        shareFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("image/jpeg");
-                i.putExtra(Intent.EXTRA_STREAM, iri2);
-                startActivity(Intent.createChooser(i, "Share Image Using"));
-
-            }
-        });
 
 
         myCustomPagerAdapter = new CustomSliderAdapter(this, fetchImages());
@@ -119,8 +72,8 @@ public class PicDetail extends AppCompatActivity {
     }
 
 
+
     List fetchImages(){
-        String data[] = new String[0];
         List<File> muList = new ArrayList<File>();
         try {
             String path = Environment.getExternalStorageDirectory().toString() + "/WhatsApp/Media/.Statuses";
@@ -147,6 +100,7 @@ public class PicDetail extends AppCompatActivity {
 
         return muList;
     }
+
 
 
 
