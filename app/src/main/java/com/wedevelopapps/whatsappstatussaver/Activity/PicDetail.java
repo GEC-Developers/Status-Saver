@@ -79,12 +79,37 @@ public class PicDetail extends AppCompatActivity {
         shareFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //   shareImage();
+                shareImage();
             }
         });
     }
 
 
+    /*
+
+
+    sharing Images
+
+     */
+
+    private void shareImage() {
+
+        iri2 = Uri.parse(imagesList.get(viewPager.getCurrentItem()).getAbsolutePath());
+
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("image/jpeg");
+        i.putExtra(Intent.EXTRA_STREAM, iri2);
+        startActivity(Intent.createChooser(i, "Share Image Using"));
+
+
+    }
+
+
+    /*
+
+    downloading images
+
+     */
     private void downloadImage() {
 
 
@@ -103,9 +128,9 @@ public class PicDetail extends AppCompatActivity {
             getApplicationContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         } finally {
-            Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -140,8 +165,6 @@ public class PicDetail extends AppCompatActivity {
 
         return muList;
     }
-
-
 
 
     @Override
