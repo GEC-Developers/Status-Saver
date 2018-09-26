@@ -41,6 +41,7 @@ public class PicDetail extends AppCompatActivity {
     FloatingActionButton downloadFab, shareFab;
     Bitmap bmap;
     Uri iri2;
+    List<File> imagesList;
     CustomSliderAdapter myCustomPagerAdapter;
     ViewPager viewPager;
 
@@ -50,24 +51,63 @@ public class PicDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_detail);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
-
+        imagesList = new ArrayList<>();
+        imagesList = fetchImages();
+        int pos = 0;
         String posString = getIntent().getStringExtra("pos").toString();
         try {
-            int pos = Integer.parseInt(posString);
+            pos = Integer.parseInt(posString);
         } catch (Exception e) {
-            Log.d("Error", "not parceable Inet");
+            Log.d("Error", "not parceable Int");
         }
         downloadFab = findViewById(R.id.DownloadFab);
         shareFab = findViewById(R.id.shareFab);
-
-
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
-
-
-
-        myCustomPagerAdapter = new CustomSliderAdapter(this, fetchImages());
+        myCustomPagerAdapter = new CustomSliderAdapter(this, imagesList);
         viewPager.setAdapter(myCustomPagerAdapter);
+        viewPager.setCurrentItem(pos);
+
+        downloadFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                downloadImage();
+            }
+        });
+
+
+        shareFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //   shareImage();
+            }
+        });
+    }
+
+
+    private void downloadImage() {
+
+
+        File f1, f2;
+        f1 = imagesList.get(viewPager.getCurrentItem());
+        String fname = f1.getName();
+        f2 = new File(Environment.getExternalStorageDirectory() + "/WhatsAppStatus/Images/");
+        f2.mkdirs();
+
+        try {
+            FileUtils.copyFileToDirectory(f1, f2);
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+            values.put(MediaStore.MediaColumns.DATA, f2.toString() + "/" + fname);
+            getApplicationContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        } finally {
+            Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+        }
+
 
     }
 
