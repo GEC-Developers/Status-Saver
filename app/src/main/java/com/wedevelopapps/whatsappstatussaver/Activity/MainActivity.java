@@ -2,6 +2,7 @@ package com.wedevelopapps.whatsappstatussaver.Activity;
 
 import android.Manifest;
 import android.app.AlarmManager;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -19,16 +21,16 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
-import com.nightonke.boommenu.ButtonEnum;
-import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 import com.nightonke.boommenu.Util;
 import com.wedevelopapps.whatsappstatussaver.R;
 import com.wedevelopapps.whatsappstatussaver.SelectionsPageAdapter;
@@ -49,13 +51,14 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> imageIDList;
     ArrayList<String> titleList;
     private BoomMenuButton bmb;
+    Dialog HelpPopUp;
 
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        if(requestCode==100){
-            if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+        if (requestCode == 100) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent mStartActivity = new Intent(MainActivity.this, MainActivity.class);
                 int mPendingIntentId = 123456;
                 PendingIntent mPendingIntent = PendingIntent.getActivity(MainActivity.this, mPendingIntentId, mStartActivity,
@@ -63,17 +66,17 @@ public class MainActivity extends AppCompatActivity {
                 AlarmManager mgr = (AlarmManager) MainActivity.this.getSystemService(Context.ALARM_SERVICE);
                 mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
                 System.exit(0);
-            }else{
+            } else {
                 System.exit(0);
             }
-        }else{
+        } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final FloatingActionButton fabShare,fabInfo;
+        final FloatingActionButton fabShare, fabInfo;
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
@@ -81,22 +84,24 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolBar);
         getSupportActionBar().setTitle("WhatsApp Status Saver");
 
+        HelpPopUp = new Dialog(this);
+
         //PermissifyManager
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(getApplicationContext(),"Restart App",Toast.LENGTH_LONG).show();
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)){
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getApplicationContext(), "Restart App", Toast.LENGTH_LONG).show();
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
 
 
-            }else{
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
             }
         }
 
 
         //setting up view pager
-        mViewPager =  findViewById(R.id.viewPager);
+        mViewPager = findViewById(R.id.viewPager);
         mSectionPageAdapter = new SelectionsPageAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSectionPageAdapter);
 
@@ -143,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             bmb.addBuilder(SavedGallery);
         }
 
-        mTabLayout =  findViewById(R.id.main_tabs);
+        mTabLayout = findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
 
 
@@ -161,6 +166,38 @@ public class MainActivity extends AppCompatActivity {
         titleList.add("About Us");
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.Help) {
+            ShowHelpPopUp();
+        }
+
+        return true;
+    }
+
+    private void ShowHelpPopUp() {
+        HelpPopUp.setContentView(R.layout.help_pop_up);
+        ImageView ClosePopup = HelpPopUp.findViewById(R.id.ClosePopUp);
+
+        ClosePopup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HelpPopUp.dismiss();
+            }
+        });
+        HelpPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        HelpPopUp.show();
     }
 
     @Override
