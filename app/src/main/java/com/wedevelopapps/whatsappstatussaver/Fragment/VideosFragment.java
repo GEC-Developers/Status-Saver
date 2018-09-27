@@ -96,33 +96,9 @@ public class VideosFragment extends android.support.v4.app.Fragment {
             }
             for (int i = 0; i < files.length; i++) {
 
-                // data[i] = files[i].getName();
                 if(files[i].getName().endsWith(".mp4")){
                     Log.d("test", "onStart:  files " + files[i].getAbsolutePath());
                     muList.add(files[i].getAbsolutePath());
-
-                  /*  Bitmap bmap = ThumbnailUtils.createVideoThumbnail(files[i].getAbsolutePath(), MediaStore.Video.Thumbnails.MINI_KIND);
-                    String root = Environment.getExternalStorageDirectory().toString();
-                    File myDir = new File(root + "/req_images");
-                    myDir.mkdirs();
-                    Random generator = new Random();
-                    int n = 10000;
-                    n = generator.nextInt(n);
-                    String fname = files[i].getName()+".jpg";
-                    File file = new File(myDir, fname);
-                    Log.i("test", "" + file);
-                    if (!file.exists()) {
-                        //file.delete();
-                        try {
-                            FileOutputStream out = new FileOutputStream(file);
-                            bmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                            out.flush();
-                            out.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }*/
-
 
                 }
 
@@ -157,37 +133,15 @@ public class VideosFragment extends android.support.v4.app.Fragment {
         @Override
         public void onBindViewHolder(final MyHolder holder, int position) {
             final Uri iri = Uri.parse(muList.get(position));
-
-            // Bitmap bmap = ThumbnailUtils.createVideoThumbnail(iri.toString(), MediaStore.Video.Thumbnails.MINI_KIND);
-            // Picasso.with(getContext()).load(getImageUri(getContext(),bmap)).networkPolicy(NetworkPolicy.OFFLINE).fit().into(holder.VidV);
             File f = new File(muList.get(position));
-               /* String root = Environment.getExternalStorageDirectory().toString();
-                File myDir = new File(root + "/oswin1998.whatsappStatus/Videos/.Thum");
-                myDir.mkdirs();
-               // Random generator = new Random();
-                int n = 10000;
-              //  n = generator.nextInt(n);
-                String fname = f.getName()+".jpg";
-                File file = new File(myDir, fname);
-                if (!file.exists()) {
-                    //file.delete();
-                    try {
-                        FileOutputStream out = new FileOutputStream(file);
-                        bmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                        out.flush();
-                        out.close();
-                        Log.i("test", "" + file);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }*/
 
-            File thumFile = new File(Environment.getExternalStorageDirectory()+"/oswin1998.whatsappStatus/Videos/.Thum/"+f.getName()+".jpg");
+
+            File thumFile = new File(Environment.getExternalStorageDirectory() + "/WhatsAppStatus/Videos/.Thum/" + f.getName() + ".jpg");
             if(!thumFile.exists()){
                 Bitmap bmap = ThumbnailUtils.createVideoThumbnail(iri.toString(), MediaStore.Video.Thumbnails.MINI_KIND);
 
                 String root = Environment.getExternalStorageDirectory().toString();
-                File myDir = new File(root + "/oswin1998.whatsappStatus/Videos/.Thum");
+                File myDir = new File(root + "/WhatsAppStatus/Videos/.Thum");
                 myDir.mkdirs();
                 // Random generator = new Random();
                 int n = 10000;
@@ -216,7 +170,7 @@ public class VideosFragment extends android.support.v4.app.Fragment {
                     File f1,f2;
                     f1 = new File(iri.toString());
                     String fname = f1.getName();
-                    f2 = new File(Environment.getExternalStorageDirectory()+"/oswin1998.whatsappStatus/Videos/");
+                    f2 = new File(Environment.getExternalStorageDirectory() + "/WhatsAppStatus/Videos/");
                     f2.mkdirs();
                     try {
                         //FileUtils.copyFile(f1,f2);

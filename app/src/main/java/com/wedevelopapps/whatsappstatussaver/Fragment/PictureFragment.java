@@ -121,7 +121,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
             final Uri iri = Uri.parse(muList.get(position));
             File f = new File(muList.get(position));
 
-            Picasso.with(getContext()).load(f).fit().networkPolicy(NetworkPolicy.OFFLINE).fit().into(holder.imgV, new Callback() {
+            Picasso.with(getContext()).load(f).centerCrop().networkPolicy(NetworkPolicy.OFFLINE).fit().into(holder.imgV, new Callback() {
                 @Override
                 public void onSuccess() {
 
