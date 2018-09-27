@@ -5,4 +5,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="SavedImages">Saved Images</string>
     <string name="ShareApp">Share App</string>
+    <string name="help">Help</string>
 </resources>
