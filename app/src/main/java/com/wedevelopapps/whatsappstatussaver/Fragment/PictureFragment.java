@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 
 public class PictureFragment extends android.support.v4.app.Fragment {
@@ -161,7 +162,6 @@ public class PictureFragment extends android.support.v4.app.Fragment {
 
                 }
             });
-
         }
 
         @Override
@@ -192,7 +192,9 @@ public class PictureFragment extends android.support.v4.app.Fragment {
 
                 Intent intent = new Intent(getContext(),PicDetail.class);
                 intent.putExtra("pos", "" + getAdapterPosition());
-                getContext().startActivity(intent);
+                intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(Objects.requireNonNull(getActivity()), imgV, "imageViewTrans1");
+                Objects.requireNonNull(getContext()).startActivity(intent, activityOptionsCompat.toBundle());
             }
 
 
