@@ -6,11 +6,16 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -28,10 +33,12 @@ import co.mobiwise.materialintro.view.MaterialIntroView;
 
 public class VideoDetailActivity extends AppCompatActivity {
 
-    FloatingActionButton downloadFab,shareFab,playpauseFab;
     VideoView videoView;
+    MediaController mediaController;
+
+    ImageView backArrow;
     Uri iri2;
-    int time=0;
+    int time = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,81 +50,82 @@ public class VideoDetailActivity extends AppCompatActivity {
             return;
         }
         final String data = bundle.getString("dataKey");
-        downloadFab = findViewById(R.id.VideoDownloadFab);
-        shareFab = findViewById(R.id.VideoshareFab);
-        playpauseFab = findViewById(R.id.playPauseFab);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.VideoNavigation);
+        backArrow = findViewById(R.id.backArrow);
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.SetStatus:
+                        //Set Status
+                        Intent setStatus = new Intent(Intent.ACTION_SEND);
+                        setStatus.setPackage("com.whatsapp");
+
+                        setStatus.setType("video/mp4");
+                        setStatus.putExtra(Intent.EXTRA_STREAM, iri2);
+                        setStatus.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        try {
+                            startActivity(setStatus);
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(getApplicationContext(), "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+
+                    case R.id.Download:
+                        //Download Video
+                        File f1, f2;
+                        f1 = new File(Uri.parse(data).toString());
+                        String fname = f1.getName();
+                        f2 = new File(Environment.getExternalStorageDirectory() + "/WhatsAppStatus/Videos/");
+                        f2.mkdirs();
+
+                        try {
+                            FileUtils.copyFileToDirectory(f1, f2);
+                            ContentValues values = new ContentValues();
+                            values.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis());
+                            values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4");
+                            values.put(MediaStore.MediaColumns.DATA, f2.toString() + "/" + fname);
+                            getApplicationContext().getContentResolver().insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        } finally {
+                            Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                        }
+                        break;
+
+                    //Share
+                    case R.id.Share:
+                        Intent i = new Intent(Intent.ACTION_SEND);
+                        i.setType("video/mp4");
+                        i.putExtra(Intent.EXTRA_STREAM, iri2);
+                        startActivity(Intent.createChooser(i, "Share video Using"));
+                        break;
+
+
+                }
+                return true;
+            }
+        });
+
         videoView = findViewById(R.id.VideoVView);
+        mediaController = new MediaController(this);
+
         iri2 = Uri.parse(data);
 
 
         videoView.setVideoURI(Uri.parse(data));
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
         videoView.start();
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                playpauseFab.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-            }
-        });
-        playpauseFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(videoView.isPlaying()){
-                    videoView.pause();
-                    time = videoView.getCurrentPosition();
-                    playpauseFab.setImageResource(R.drawable.ic_play_arrow_black_24dp);
-                }else if(videoView.getCurrentPosition()==videoView.getDuration()){
-                    videoView.start();
-                    playpauseFab.setImageResource(R.drawable.ic_pause_black_24dp);
-                }else{
-                    videoView.seekTo(time);
-                    videoView.start();
-                    // videoView.resume();
-                    playpauseFab.setImageResource(R.drawable.ic_pause_black_24dp);
-                }
-
-                Log.d("test", "onClick: video clicked");
-            }
-        });
-
-        downloadFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                File f1,f2;
-                f1 = new File(Uri.parse(data).toString());
-                String fname = f1.getName();
-                f2 = new File(Environment.getExternalStorageDirectory()+"/WhatsAppStatus/Videos/");
-                f2.mkdirs();
-
-                try {
-                    FileUtils.copyFileToDirectory(f1,f2);
-                    ContentValues values =new ContentValues();
-                    values.put(MediaStore.Video.Media.DATE_TAKEN,System.currentTimeMillis());
-                    values.put(MediaStore.Video.Media.MIME_TYPE,"video/mp4");
-                    values.put(MediaStore.MediaColumns.DATA,f2.toString()+"/"+fname);
-                    getApplicationContext().getContentResolver().insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,values);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-                }finally {
-                    Toast.makeText(getApplicationContext(),"Saved",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
-
-
-
-        shareFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("video/mp4");
-                i.putExtra(Intent.EXTRA_STREAM,iri2);
-                startActivity(Intent.createChooser(i,"Share video Using"));
-
-            }
-        });
     }
 
     @Override
@@ -133,7 +141,7 @@ public class VideoDetailActivity extends AppCompatActivity {
 
     }
 
-    @Override
+ /*   @Override
     protected void onStart() {
         super.onStart();
         new MaterialIntroView.Builder(this)
@@ -146,8 +154,8 @@ public class VideoDetailActivity extends AppCompatActivity {
                 .performClick(true)
                 .setInfoText("Hi There! \nClick here to download this videos")
                 .setShape(ShapeType.CIRCLE)
-                .setTarget(downloadFab)
+                .setTarget()
                 .setUsageId("intro_card2") //THIS SHOULD BE UNIQUE ID
                 .show();
-    }
+    }  */
 }
