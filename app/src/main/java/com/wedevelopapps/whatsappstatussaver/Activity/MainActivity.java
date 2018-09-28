@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
 
-            HamButton.Builder SavedGallery = new HamButton.Builder()
+            final HamButton.Builder SavedGallery = new HamButton.Builder()
                     .normalImageRes(imageIDList.get(i))
                     .imageRect(new Rect(20, 15, Util.dp2px(50), Util.dp2px(50)))
                     .shadowEffect(true)
@@ -124,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onBoomButtonClick(int index) {
                             if (index == 0) {
+                                Intent savedPictures = new Intent(getApplicationContext(), SavedGallery.class);
+                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, bmb, "fabTrans");
+
+                                startActivity(savedPictures, activityOptionsCompat.toBundle());
+
                                 Toast.makeText(MainActivity.this, "Images", Toast.LENGTH_SHORT).show();
 
                             } else if (index == 1) {
@@ -156,14 +161,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setInitialData() {
         imageIDList.add(R.drawable.ic_image_black_24dp);
-        imageIDList.add(R.drawable.ic_video_library_black_24dp);
+        imageIDList.add(R.drawable.ic_whatsapp_logo);
         imageIDList.add(R.drawable.ic_share_black_24dp);
-        imageIDList.add(R.drawable.ic_error_outline_black_24dp);
+        imageIDList.add(R.drawable.ic_settings);
 
-        titleList.add("Saved Images");
-        titleList.add("Saved Video");
-        titleList.add("Share This App");
-        titleList.add("About Us");
+        titleList.add("Saved Gallery");
+        titleList.add("WhatsApp Direct");
+        titleList.add("Share this App");
+        titleList.add("Settings");
 
 
     }

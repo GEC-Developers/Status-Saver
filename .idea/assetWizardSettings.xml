@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_close" />
-                            <entry key="sourceFile" value="C:\Users\Lenovo\Downloads\question.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_settings" />
+                            <entry key="sourceFile" value="C:\Users\Lenovo\Downloads\settings.svg" />
                           </map>
                         </option>
                       </PersistentState>
