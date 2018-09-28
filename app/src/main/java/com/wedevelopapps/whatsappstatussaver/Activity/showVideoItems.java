@@ -29,7 +29,6 @@ public class showVideoItems extends AppCompatActivity {
             return;
         }
         final String data = bundle.getString("dataKey");
-        playpauseFab = findViewById(R.id.playPauseFab);
         videoView = findViewById(R.id.showVideoView);
         mediaController = new MediaController(this);
         iri2 = Uri.parse(data);

@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +15,9 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
@@ -38,7 +42,7 @@ import co.mobiwise.materialintro.view.MaterialIntroView;
 
 public class PicDetail extends AppCompatActivity {
 
-    FloatingActionButton downloadFab, shareFab;
+    ImageView backArrow;
     Bitmap bmap;
     Uri iri2;
     List<File> imagesList;
@@ -50,7 +54,7 @@ public class PicDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_detail);
-        viewPager = (ViewPager)findViewById(R.id.viewPager);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
         imagesList = new ArrayList<>();
         imagesList = fetchImages();
         int pos = 0;
@@ -60,29 +64,63 @@ public class PicDetail extends AppCompatActivity {
         } catch (Exception e) {
             Log.d("Error", "not parceable Int");
         }
-        downloadFab = findViewById(R.id.DownloadFab);
-        shareFab = findViewById(R.id.shareFab);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.picNavigation);
+        backArrow = findViewById(R.id.backArrow);
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
         myCustomPagerAdapter = new CustomSliderAdapter(this, imagesList);
         viewPager.setAdapter(myCustomPagerAdapter);
         viewPager.setCurrentItem(pos);
 
-        downloadFab.setOnClickListener(new View.OnClickListener() {
+        backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                downloadImage();
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
-
-        shareFab.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                shareImage();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.SetStatus:
+                        setStatus();
+                        break;
+                    case R.id.Download:
+                        downloadImage();
+                        break;
+                    case R.id.Share:
+                        shareImage();
+                        break;
+
+
+                }
+                return true;
             }
         });
+
     }
+
+    private void setStatus() {
+        Uri imageUri = Uri.parse(imagesList.get(viewPager.getCurrentItem()).getAbsolutePath());
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        //Target whatsapp:
+        shareIntent.setPackage("com.whatsapp");
+        //Add text and then Image URI
+        shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+        shareIntent.setType("image/jpeg");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        try {
+            startActivity(shareIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
 
     /*
@@ -137,8 +175,7 @@ public class PicDetail extends AppCompatActivity {
     }
 
 
-
-    List fetchImages(){
+    List fetchImages() {
         List<File> muList = new ArrayList<File>();
         try {
             String path = Environment.getExternalStorageDirectory().toString() + "/WhatsApp/Media/.Statuses";
@@ -149,7 +186,7 @@ public class PicDetail extends AppCompatActivity {
             Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
             for (int i = 0; i < files.length; i++) {
 
-                if(files[i].getName().endsWith(".jpg")||files[i].getName().endsWith(".png")){
+                if (files[i].getName().endsWith(".jpg") || files[i].getName().endsWith(".png")) {
 
                     muList.add(files[i]);
 
@@ -158,16 +195,15 @@ public class PicDetail extends AppCompatActivity {
             }
 
 
-
-        }catch (Exception ex){
-            Toast.makeText(this,ex.getMessage().toString(),Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            Toast.makeText(this, ex.getMessage().toString(), Toast.LENGTH_LONG).show();
         }
 
         return muList;
     }
 
 
-    @Override
+  /*  @Override
     protected void onStart() {
         super.onStart();
         new MaterialIntroView.Builder(this)
@@ -183,5 +219,5 @@ public class PicDetail extends AppCompatActivity {
                 .setTarget(shareFab)
                 .setUsageId("intro_card3") //THIS SHOULD BE UNIQUE ID
                 .show();
-    }
+    } */
 }
