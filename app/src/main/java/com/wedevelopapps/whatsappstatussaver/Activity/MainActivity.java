@@ -32,6 +32,8 @@ import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
+import com.wedevelopapps.whatsappstatussaver.Models.ListenableTabLayout;
+import com.wedevelopapps.whatsappstatussaver.Models.TabIndicatorFollower;
 import com.wedevelopapps.whatsappstatussaver.R;
 import com.wedevelopapps.whatsappstatussaver.SelectionsPageAdapter;
 
@@ -46,7 +48,7 @@ import io.fabric.sdk.android.Fabric;
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolBar;
     private ViewPager mViewPager;
-    private TabLayout mTabLayout;
+    private ListenableTabLayout mTabLayout;
     private SelectionsPageAdapter mSectionPageAdapter;
     ArrayList<Integer> imageIDList;
     ArrayList<String> titleList;
@@ -102,8 +104,10 @@ public class MainActivity extends AppCompatActivity {
 
         //setting up view pager
         mViewPager = findViewById(R.id.viewPager);
+        View triangle = findViewById(R.id.triangle);
         mSectionPageAdapter = new SelectionsPageAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSectionPageAdapter);
+
 
         bmb = findViewById(R.id.bmb);
         imageIDList = new ArrayList<>();
@@ -155,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
 
         mTabLayout = findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
+        TabIndicatorFollower.setupWith(mTabLayout, triangle);
+
 
 
     }
