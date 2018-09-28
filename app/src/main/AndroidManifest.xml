@@ -22,11 +22,15 @@
         </activity>
         <activity android:name=".Activity.InfoActivity" />
         <activity android:name=".Activity.PicDetail" />
-        <activity android:name=".Activity.VideoDetailActivity"></activity>
+        <activity android:name=".Activity.VideoDetailActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="87353cd25208b93e0600de8b8a59d4fec4f30191" />
+
+        <activity android:name=".Activity.SavedGallery" />
+        <activity android:name=".Activity.ShowPictureItems" />
+        <activity android:name=".Activity.showVideoItems"></activity>
     </application>
 
 </manifest>
