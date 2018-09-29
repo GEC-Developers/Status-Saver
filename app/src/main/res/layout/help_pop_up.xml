@@ -82,7 +82,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="-Click the Save Button..."
+                    android:text="-Click the Download Button..."
                     android:textSize="18sp" />
 
                 <TextView

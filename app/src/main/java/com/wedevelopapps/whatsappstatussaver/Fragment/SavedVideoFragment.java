@@ -107,7 +107,7 @@ public class SavedVideoFragment extends Fragment {
 
 
         } catch (Exception ex) {
-            Toast.makeText(getContext(), ex.getMessage().toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(), ex.getMessage().toString(), Toast.LENGTH_LONG).show();
         }
         //Collections.reverse(muList);
         mReAdapter = new SavedVideoFragment.myAdapter((ArrayList<String>) muList, getContext());
