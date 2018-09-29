@@ -106,7 +106,7 @@ public class VideosFragment extends android.support.v4.app.Fragment {
 
 
         }catch (Exception ex){
-            Toast.makeText(getContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
+            // Toast.makeText(getContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
         }
         //Collections.reverse(muList);
         mReAdapter = new VideosFragment.myAdapter((ArrayList<String>) muList,getContext());

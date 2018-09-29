@@ -86,7 +86,7 @@ public class SavedPictureFragment extends Fragment {
 
 
         } catch (Exception ex) {
-            Toast.makeText(getContext(), ex.getMessage().toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(), ex.getMessage().toString(), Toast.LENGTH_LONG).show();
         }
 
         mReAdapter = new myAdapter((ArrayList<String>) muList, getContext());
