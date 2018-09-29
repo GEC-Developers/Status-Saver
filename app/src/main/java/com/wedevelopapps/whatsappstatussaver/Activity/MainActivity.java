@@ -133,10 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
                                 startActivity(savedPictures, activityOptionsCompat.toBundle());
 
-                                Toast.makeText(MainActivity.this, "Images", Toast.LENGTH_SHORT).show();
-
                             } else if (index == 1) {
-                                Toast.makeText(MainActivity.this, "Video", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "WhatsApp Direct", Toast.LENGTH_SHORT).show();
 
                             } else if (index == 2) {
                                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);

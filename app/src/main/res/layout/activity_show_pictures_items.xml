@@ -5,23 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".Activity.showVideoItems">
+    tools:context=".Activity.ShowPictureItems">
 
-    <FrameLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/showItemsviewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="140dp"
-        android:transitionName="videoTrans1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <VideoView
-            android:id="@+id/showVideoView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="70dp" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/picNavigation"
@@ -44,6 +34,5 @@
         android:src="@drawable/ic_back_button_circular_left_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </android.support.constraint.ConstraintLayout>

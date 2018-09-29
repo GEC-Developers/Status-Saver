@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/Share"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="SHARE" />
+
+    <item
         android:id="@+id/SetStatus"
         android:icon="@drawable/ic_whatsapp_logo"
         android:title="SET AS STATUS" />
 
     <item
-        android:id="@+id/Download"
-        android:icon="@drawable/ic_download_symbol"
-        android:title="DOWNLOAD" />
-
-    <item
-        android:id="@+id/Share"
-        android:icon="@drawable/ic_share_black_24dp"
-        android:title="SHARE" />
+        android:id="@+id/Delete"
+        android:icon="@drawable/ic_delete_forever_black_24dp"
+        android:title="DELETE" />
 </menu>
