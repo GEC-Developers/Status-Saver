@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onBoomButtonClick(int index) {
                             if (index == 0) {
                                 Intent savedPictures = new Intent(getApplicationContext(), SavedGallery.class);
-                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, bmb, "fabTrans");
+                                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, bmb, "fabTrans1");
 
                                 startActivity(savedPictures, activityOptionsCompat.toBundle());
 
