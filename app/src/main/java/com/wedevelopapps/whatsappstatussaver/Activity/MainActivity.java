@@ -134,16 +134,13 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(savedPictures, activityOptionsCompat.toBundle());
 
                             } else if (index == 1) {
-                                Toast.makeText(MainActivity.this, "WhatsApp Direct", Toast.LENGTH_SHORT).show();
-
-                            } else if (index == 2) {
                                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                                 sharingIntent.setType("text/plain");
                                 String shareBody = "Download WhatsApp Status using PLAYSTORE LINK";
                                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Songs of Zion ");
                                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
-                            } else if (index == 3) {
+                            } else if (index == 2) {
                                 Intent i = new Intent(getApplicationContext(), InfoActivity.class);
                                 ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, bmb, "fabTrans");
 
@@ -165,14 +162,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setInitialData() {
         imageIDList.add(R.drawable.ic_image_black_24dp);
-        imageIDList.add(R.drawable.ic_whatsapp_logo);
         imageIDList.add(R.drawable.ic_share_black_24dp);
-        imageIDList.add(R.drawable.ic_settings);
+        imageIDList.add(R.drawable.ic_error_outline_black_24dp);
 
         titleList.add("Saved Gallery");
-        titleList.add("WhatsApp Direct");
         titleList.add("Share this App");
-        titleList.add("Settings");
+        titleList.add("About Us");
 
 
     }
