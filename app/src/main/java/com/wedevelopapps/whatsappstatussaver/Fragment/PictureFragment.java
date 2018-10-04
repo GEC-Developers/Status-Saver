@@ -51,6 +51,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
     RecyclerView.Adapter mReAdapter;
     GridLayoutManager gLay;
     TextView tv;
+    List<String> muList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,8 +66,26 @@ public class PictureFragment extends android.support.v4.app.Fragment {
         gLay = new GridLayoutManager(getContext(),2);
         tv= v.findViewById(R.id.statTxt2);
         recyclerView.setLayoutManager(gLay);
+        muList= new ArrayList<String>();
+        fetchImages();
 
-        List<String> muList = new ArrayList<String>();
+        mReAdapter = new myAdapter((ArrayList<String>) muList,getContext());
+        recyclerView.setAdapter(mReAdapter);
+
+
+        return v;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    fetchImages();
+    mReAdapter.notifyDataSetChanged();
+    }
+
+    private void fetchImages() {
+
         try {
             String path = Environment.getExternalStorageDirectory().toString() + "/WhatsApp/Media/.Statuses";
             Log.d("test", "onStart: " + path);
@@ -91,16 +110,22 @@ public class PictureFragment extends android.support.v4.app.Fragment {
 
 
         }catch (Exception ex){
-            // Toast.makeText(getContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
         }
 
 
-        mReAdapter = new myAdapter((ArrayList<String>) muList,getContext());
-        recyclerView.setAdapter(mReAdapter);
-
-
-        return v;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public void onStart() {
