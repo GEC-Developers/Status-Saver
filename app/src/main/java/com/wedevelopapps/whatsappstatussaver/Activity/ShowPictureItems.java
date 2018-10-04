@@ -89,44 +89,56 @@ public class ShowPictureItems extends AppCompatActivity {
 
 
     private void deleteImage(){
-        File file = new File(imagesList.get(viewPager.getCurrentItem()).getAbsolutePath());
-        file.delete();
-        if(file.exists()){
-            try {
-                file.getCanonicalFile().delete();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if(imagesList.size()>0) {
+            File file = new File(imagesList.get(viewPager.getCurrentItem()).getAbsolutePath());
+            file.delete();
+            if (file.exists()) {
+                try {
+                    file.getCanonicalFile().delete();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
 
-            finally {
 
+                    if (file.exists()) {
+                        getApplicationContext().deleteFile(file.getName());
+                    }
 
-                if (file.exists()) {
-                    getApplicationContext().deleteFile(file.getName());
                 }
 
             }
 
+            update();
+        }else{
+
+            previousActivity();
         }
-
-
-        update();
 
     }
 
+
+    private void previousActivity(){
+
+        Intent intent= new Intent(this,SavedGallery.class);
+        startActivity(intent);
+
+    }
 
 
     private  void update(){
 
         int pos=viewPager.getCurrentItem();
         imagesList.remove(pos);
+        if(imagesList.size()<=0){
+            previousActivity();
+        }
+
         myCustomPagerAdapter.notifyDataSetChanged();
         viewPager.setAdapter(myCustomPagerAdapter);
         if(pos>=imagesList.size()){
             viewPager.setCurrentItem(pos-1);
         }else{
             viewPager.setCurrentItem(pos);
-
         }
 
 
