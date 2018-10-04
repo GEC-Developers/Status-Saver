@@ -21,6 +21,7 @@ import com.wedevelopapps.whatsappstatussaver.adapter.CustomSliderAdapter;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -75,6 +76,7 @@ public class ShowPictureItems extends AppCompatActivity {
                         break;
                     case R.id.Delete:
                         //TODO delete Image
+                        deleteImage();
                         break;
 
 
@@ -84,6 +86,24 @@ public class ShowPictureItems extends AppCompatActivity {
         });
 
     }
+
+
+    private void deleteImage(){
+        File file = new File(imagesList.get(viewPager.getCurrentItem()).getAbsolutePath());
+        file.delete();
+        if(file.exists()){
+            try {
+                file.getCanonicalFile().delete();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(file.exists()){
+                getApplicationContext().deleteFile(file.getName());
+            }
+        }
+
+    }
+
 
     private void shareImage() {
         iri2 = Uri.parse(imagesList.get(viewPager.getCurrentItem()).getAbsolutePath());

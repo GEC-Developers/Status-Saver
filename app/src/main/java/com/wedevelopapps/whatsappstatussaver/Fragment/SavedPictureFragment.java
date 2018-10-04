@@ -43,6 +43,7 @@ public class SavedPictureFragment extends Fragment {
     RecyclerView.Adapter mReAdapter;
     GridLayoutManager gLay;
     TextView tv;
+    List<String> muList;
 
     public SavedPictureFragment() {
         // Required empty public constructor
@@ -62,7 +63,17 @@ public class SavedPictureFragment extends Fragment {
         tv = v.findViewById(R.id.statTxt);
         recyclerView.setLayoutManager(gLay);
 
-        List<String> muList = new ArrayList<String>();
+        muList= new ArrayList<String>();
+        fetchImage();
+        mReAdapter = new myAdapter((ArrayList<String>) muList, getContext());
+        recyclerView.setAdapter(mReAdapter);
+
+        return v;
+
+    }
+
+    private  void fetchImage(){
+
         try {
             String path = Environment.getExternalStorageDirectory().toString() + "/WhatsAppStatus/Images/";
             Log.d("test", "onStart: " + path);
@@ -89,10 +100,15 @@ public class SavedPictureFragment extends Fragment {
             //Toast.makeText(getContext(), ex.getMessage().toString(), Toast.LENGTH_LONG).show();
         }
 
-        mReAdapter = new myAdapter((ArrayList<String>) muList, getContext());
-        recyclerView.setAdapter(mReAdapter);
+    }
 
-        return v;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        muList.clear();
+        fetchImage();
+        mReAdapter.notifyDataSetChanged();
 
     }
 
