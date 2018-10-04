@@ -97,10 +97,38 @@ public class ShowPictureItems extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(file.exists()){
-                getApplicationContext().deleteFile(file.getName());
+
+            finally {
+
+
+                if (file.exists()) {
+                    getApplicationContext().deleteFile(file.getName());
+                }
+
             }
+
         }
+
+
+        update();
+
+    }
+
+
+
+    private  void update(){
+
+        int pos=viewPager.getCurrentItem();
+        imagesList.remove(pos);
+        myCustomPagerAdapter.notifyDataSetChanged();
+        viewPager.setAdapter(myCustomPagerAdapter);
+        if(pos>=imagesList.size()){
+            viewPager.setCurrentItem(pos-1);
+        }else{
+            viewPager.setCurrentItem(pos);
+
+        }
+
 
     }
 
