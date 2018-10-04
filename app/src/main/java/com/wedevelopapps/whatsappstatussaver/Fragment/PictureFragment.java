@@ -80,6 +80,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        muList.clear();
     fetchImages();
     mReAdapter.notifyDataSetChanged();
     }
