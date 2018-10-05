@@ -3,6 +3,8 @@
     <color name="colorPrimary">#4a148c</color>
     <color name="colorPrimaryDark">#4a148c</color>
     <color name="colorAccent">#00c853</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="colorPrimaryLight">#e6754aab</color>
 
 
     <!-- Material Design - Color Palette -->

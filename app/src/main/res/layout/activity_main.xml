@@ -67,6 +67,8 @@
         app:bmb_buttonEnum="ham"
         app:bmb_buttonPlaceEnum="buttonPlace_ham_3"
         app:bmb_piecePlaceEnum="piecePlace_ham_3"
+        app:bmb_normalColor="@color/colorPrimary"
+        app:bmb_shadowEffect="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
