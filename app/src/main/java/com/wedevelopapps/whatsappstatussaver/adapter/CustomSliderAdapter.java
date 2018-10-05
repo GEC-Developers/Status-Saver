@@ -36,7 +36,8 @@ public class CustomSliderAdapter extends PagerAdapter{
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        @Override
+
+    @Override
         public int getCount() {
             return list.size();
         }
@@ -45,6 +46,9 @@ public class CustomSliderAdapter extends PagerAdapter{
         public boolean isViewFromObject(View view, Object object) {
             return view == ((LinearLayout) object);
         }
+
+
+
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
