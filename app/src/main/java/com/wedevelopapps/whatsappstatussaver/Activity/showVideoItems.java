@@ -18,6 +18,8 @@ import android.widget.VideoView;
 
 import com.wedevelopapps.whatsappstatussaver.R;
 
+import java.io.File;
+
 public class showVideoItems extends AppCompatActivity {
     FloatingActionButton playpauseFab;
 
@@ -35,7 +37,7 @@ public class showVideoItems extends AppCompatActivity {
         if (bundle == null) {
             return;
         }
-        final String data = bundle.getString("dataKey");
+        String data = bundle.getString("dataKey");
         videoView = findViewById(R.id.showVideoView);
         BottomNavigationView bottomNavigationView = findViewById(R.id.picNavigation);
         backArrow = findViewById(R.id.backArrow);
@@ -67,6 +69,7 @@ public class showVideoItems extends AppCompatActivity {
                         break;
                     case R.id.Delete:
                         //TODO delete Video
+                        deleteVideo();
                         break;
 
 
@@ -76,6 +79,33 @@ public class showVideoItems extends AppCompatActivity {
         });
 
     }
+
+    private void deleteVideo() {
+        try {
+            File videofiles = new File(String.valueOf(iri2));
+            if (videofiles.exists()) {
+                videofiles.delete();
+                previousActivity();
+            } else {
+                Toast.makeText(getApplicationContext(), "You don't have video to delete", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void previousActivity() {
+
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+
+    }
+
 
     private void shareImage() {
         Intent i = new Intent(Intent.ACTION_SEND);

@@ -75,7 +75,6 @@ public class ShowPictureItems extends AppCompatActivity {
                         setStatus();
                         break;
                     case R.id.Delete:
-                        //TODO delete Image
                         deleteImage();
                         break;
 
@@ -88,8 +87,8 @@ public class ShowPictureItems extends AppCompatActivity {
     }
 
 
-    private void deleteImage(){
-        if(imagesList.size()>0) {
+    private void deleteImage() {
+        if (imagesList.size() > 0) {
             File file = new File(imagesList.get(viewPager.getCurrentItem()).getAbsolutePath());
             file.delete();
             if (file.exists()) {
@@ -109,7 +108,7 @@ public class ShowPictureItems extends AppCompatActivity {
             }
 
             update();
-        }else{
+        } else {
 
             previousActivity();
         }
@@ -117,30 +116,29 @@ public class ShowPictureItems extends AppCompatActivity {
     }
 
 
-    private void previousActivity(){
+    private void previousActivity() {
 
-        Intent intent= new Intent(this,SavedGallery.class);
+        Intent intent = new Intent(this, SavedGallery.class);
         startActivity(intent);
 
     }
 
 
-    private  void update(){
+    private void update() {
 
-        int pos=viewPager.getCurrentItem();
+        int pos = viewPager.getCurrentItem();
         imagesList.remove(pos);
-        if(imagesList.size()<=0){
+        if (imagesList.size() <= 0) {
             previousActivity();
         }
 
         myCustomPagerAdapter.notifyDataSetChanged();
         viewPager.setAdapter(myCustomPagerAdapter);
-        if(pos>=imagesList.size()){
-            viewPager.setCurrentItem(pos-1);
-        }else{
+        if (pos >= imagesList.size()) {
+            viewPager.setCurrentItem(pos - 1);
+        } else {
             viewPager.setCurrentItem(pos);
         }
-
 
     }
 
