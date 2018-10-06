@@ -47,6 +47,7 @@ public class SavedVideoFragment extends Fragment {
     GridLayoutManager gLay;
     ProgressDialog mProgress;
     TextView tv;
+    ImageView cryingEmoji;
     RecyclerView.Adapter mReAdapter;
 
     public SavedVideoFragment() {
@@ -61,6 +62,7 @@ public class SavedVideoFragment extends Fragment {
         recyclerView = (RecyclerView) v.findViewById(R.id.savedVideosRecView);
         recyclerView.setHasFixedSize(true);
         tv = v.findViewById(R.id.statTxt1);
+        cryingEmoji = v.findViewById(R.id.cryingEmoji);
         recyclerView.setItemViewCacheSize(60);
         recyclerView.setDrawingCacheEnabled(true);
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
@@ -93,6 +95,7 @@ public class SavedVideoFragment extends Fragment {
             if (files.length > 0) {
                 recyclerView.setVisibility(View.VISIBLE);
                 tv.setVisibility(View.GONE);
+                cryingEmoji.setVisibility(View.GONE);
             }
             for (int i = 0; i < files.length; i++) {
 

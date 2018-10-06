@@ -86,6 +86,7 @@ public class showVideoItems extends AppCompatActivity {
             if (videofiles.exists()) {
                 videofiles.delete();
                 previousActivity();
+                Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "You don't have video to delete", Toast.LENGTH_SHORT).show();
             }

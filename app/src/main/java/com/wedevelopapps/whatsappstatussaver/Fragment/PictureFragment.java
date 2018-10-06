@@ -51,6 +51,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
     RecyclerView.Adapter mReAdapter;
     GridLayoutManager gLay;
     TextView tv;
+    ImageView cryingEmoji;
     List<String> muList;
 
     @Override
@@ -65,6 +66,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         gLay = new GridLayoutManager(getContext(),2);
         tv= v.findViewById(R.id.statTxt2);
+        cryingEmoji = v.findViewById(R.id.cryingEmoji);
         recyclerView.setLayoutManager(gLay);
         muList= new ArrayList<String>();
         fetchImages();
@@ -97,6 +99,7 @@ public class PictureFragment extends android.support.v4.app.Fragment {
             if(files.length>0) {
                 recyclerView.setVisibility(View.VISIBLE);
                 tv.setVisibility(View.GONE);
+                cryingEmoji.setVisibility(View.GONE);
             }
             for (int i = 0; i < files.length; i++) {
 

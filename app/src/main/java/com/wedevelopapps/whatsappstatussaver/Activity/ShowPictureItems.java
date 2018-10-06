@@ -106,7 +106,7 @@ public class ShowPictureItems extends AppCompatActivity {
                 }
 
             }
-
+            Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
             update();
         } else {
 
