@@ -56,9 +56,16 @@ public class InfoActivity extends AppCompatActivity {
         btLicense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openLink();
             }
         });
+    }
+
+    private void openLink() {
+        String url = "https://whatsappstatussaver-dba96.firebaseapp.com/";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
     private void sendFeedBack() {
