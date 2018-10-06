@@ -5,6 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.SavedPictureFragment">
 
+
+    <ImageView
+        android:id="@+id/cryingEmoji"
+        android:layout_width="match_parent"
+        android:layout_height="252dp"
+        android:layout_marginTop="84dp"
+        android:src="@drawable/crying_emoji"
+        app:layout_constraintBottom_toTopOf="@+id/statTxt2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <TextView
         android:id="@+id/statTxt"
         android:layout_width="wrap_content"
@@ -13,14 +27,15 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="No pictures to display"
+        android:text="No Images Available"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textSize="34sp"
-        android:textStyle="bold|italic"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.762" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/savedPicturesRecView"

@@ -43,6 +43,7 @@ public class SavedPictureFragment extends Fragment {
     RecyclerView.Adapter mReAdapter;
     GridLayoutManager gLay;
     TextView tv;
+    ImageView cryingEmoji;
     List<String> muList;
 
     public SavedPictureFragment() {
@@ -61,6 +62,7 @@ public class SavedPictureFragment extends Fragment {
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         gLay = new GridLayoutManager(getContext(), 2);
         tv = v.findViewById(R.id.statTxt);
+        cryingEmoji = v.findViewById(R.id.cryingEmoji);
         recyclerView.setLayoutManager(gLay);
 
         muList= new ArrayList<String>();
@@ -84,6 +86,7 @@ public class SavedPictureFragment extends Fragment {
             if (files.length > 0) {
                 recyclerView.setVisibility(View.VISIBLE);
                 tv.setVisibility(View.GONE);
+                cryingEmoji.setVisibility(View.GONE);
             }
             for (int i = 0; i < files.length; i++) {
 

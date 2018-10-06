@@ -51,6 +51,7 @@ public class VideosFragment extends android.support.v4.app.Fragment {
 
     ProgressDialog mProgress;
     TextView tv;
+    ImageView cryingEmoji;
     RecyclerView.Adapter mReAdapter;
 
     @Override
@@ -61,6 +62,7 @@ public class VideosFragment extends android.support.v4.app.Fragment {
         recyclerView = (RecyclerView) v.findViewById(R.id.VideosRecView);
         recyclerView.setHasFixedSize(true);
         tv = v.findViewById(R.id.statTxt1);
+        cryingEmoji = v.findViewById(R.id.cryingEmoji);
         recyclerView.setItemViewCacheSize(60);
         recyclerView.setDrawingCacheEnabled(true);
         recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_AUTO);
@@ -92,6 +94,7 @@ public class VideosFragment extends android.support.v4.app.Fragment {
             if(files.length>0) {
                 recyclerView.setVisibility(View.VISIBLE);
                 tv.setVisibility(View.GONE);
+                cryingEmoji.setVisibility(View.GONE);
             }
             for (int i = 0; i < files.length; i++) {
 
