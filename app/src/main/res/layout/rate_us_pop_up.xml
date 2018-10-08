@@ -64,43 +64,31 @@
             android:layout_marginTop="16dp"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/rateUs"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:background="@drawable/gradient"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:text="Rate Us"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/colorPrimaryDark"
-                app:cardCornerRadius="15dp">
+                android:textSize="24sp" />
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="35dp"
-                    android:background="@color/transparent"
-                    android:gravity="center"
-                    android:text="Rate Us"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
+            <Button
                 android:id="@+id/exitApp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                app:cardBackgroundColor="@color/colorPrimaryLight"
-                app:cardCornerRadius="15dp">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="35dp"
-                    android:gravity="center"
-                    android:text="Exit App"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
-
-            </android.support.v7.widget.CardView>
+                android:layout_marginTop="32dp"
+                android:background="@drawable/gradient"
+                android:backgroundTint="@color/dark_purple_A200"
+                android:text="Exit App"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:id="@+id/cancelButton"

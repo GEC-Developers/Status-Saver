@@ -25,11 +25,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.ads.MobileAds;
 import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
@@ -86,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mToolBar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("WhatsApp Status Saver");
+        getSupportActionBar().setTitle("WA Status Saver");
+
+        MobileAds.initialize(this, "ca-app-pub-3781654628202166~6266376014");
 
         HelpPopUp = new Dialog(this);
         rateUsPopUp = new Dialog(this);
@@ -214,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void ratePopup() {
         rateUsPopUp.setContentView(R.layout.rate_us_pop_up);
-        CardView exitApp = rateUsPopUp.findViewById(R.id.exitApp);
+        Button exitApp = rateUsPopUp.findViewById(R.id.exitApp);
         LinearLayout cancel = rateUsPopUp.findViewById(R.id.cancelButton);
 
         exitApp.setOnClickListener(new View.OnClickListener() {

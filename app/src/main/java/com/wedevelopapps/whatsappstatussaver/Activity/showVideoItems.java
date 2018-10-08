@@ -16,6 +16,10 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.wedevelopapps.whatsappstatussaver.R;
 
 import java.io.File;
@@ -28,6 +32,8 @@ public class showVideoItems extends AppCompatActivity {
     MediaController mediaController;
     Uri iri2;
     int time = 0;
+    InterstitialAd mInterstitialAd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,21 @@ public class showVideoItems extends AppCompatActivity {
         if (bundle == null) {
             return;
         }
+
+        MobileAds.initialize(this, "ca-app-pub-3781654628202166~6266376014");
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3781654628202166/9503322561");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+
+        });
+
         String data = bundle.getString("dataKey");
         videoView = findViewById(R.id.showVideoView);
         BottomNavigationView bottomNavigationView = findViewById(R.id.picNavigation);
@@ -62,9 +83,11 @@ public class showVideoItems extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.Share:
+                        showInterstitial();
                         shareImage();
                         break;
                     case R.id.SetStatus:
+                        showInterstitial();
                         setStatus();
                         break;
                     case R.id.Delete:
@@ -129,6 +152,17 @@ public class showVideoItems extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Whatsapp have not been installed.", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void showInterstitial() {
+        // Show the ad if it's ready. Otherwise toast and restart the game.
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
 
     @Override
     protected void onPause() {
