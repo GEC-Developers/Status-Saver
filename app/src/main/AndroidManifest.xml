@@ -27,6 +27,9 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="87353cd25208b93e0600de8b8a59d4fec4f30191" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="[ADMOB_APP_ID]" />
 
         <activity android:name=".Activity.SavedGallery" />
         <activity android:name=".Activity.ShowPictureItems" />
