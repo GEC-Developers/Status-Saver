@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4a148c</color>
-    <color name="colorPrimaryDark">#4a148c</color>
-    <color name="colorAccent">#00c853</color>
+    <color name="colorPrimary">#043732</color>
+    <color name="colorPrimaryDark">#043732</color>
+    <color name="colorAccent">#388e3c</color>
     <color name="transparent">#00ffffff</color>
+    <color name="colorPrimary1">#20c659</color>
     <color name="colorPrimaryLight">#e6754aab</color>
+    <color name="rateUsBt">#9cd4a9</color>
 
 
     <!-- Material Design - Color Palette -->
