@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="10dp"
-    android:layout_marginTop="30dp"
+    android:layout_gravity="center"
     android:layout_marginRight="10dp"
-    android:layout_marginBottom="30dp"
-    android:background="@color/white"
+    android:layout_marginTop="55dp"
+    android:layout_marginBottom="70dp"
+    android:background="@drawable/rate_us_gradient"
     android:elevation="8dp">
 
     <RelativeLayout
@@ -21,13 +23,14 @@
             android:id="@+id/linearHeart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/heart" />
+                android:layout_height="150dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/ic_star" />
 
         </LinearLayout>
 
@@ -36,9 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearHeart"
-            android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="Love using our App?"
+            android:text="Enjoy using our App?"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -70,12 +72,13 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:background="@drawable/gradient"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="Rate Us"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:layout_marginTop="16dp"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                tools:targetApi="lollipop" />
 
             <Button
                 android:id="@+id/exitApp"
@@ -84,7 +87,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/gradient"
-                android:backgroundTint="@color/dark_purple_A200"
+                android:backgroundTint="@color/rateUsBt"
                 android:text="Exit App"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
