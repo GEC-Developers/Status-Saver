@@ -91,16 +91,12 @@ public class VideosFragment extends android.support.v4.app.Fragment {
             File[] files = dir.listFiles();
             Log.d("test", "onStart: " + files.length);
             Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
-            if(files.length>0) {
-                recyclerView.setVisibility(View.VISIBLE);
-                tv.setVisibility(View.GONE);
-                cryingEmoji.setVisibility(View.GONE);
-            }
-            for (int i = 0; i < files.length; i++) {
 
-                if(files[i].getName().endsWith(".mp4")){
-                    Log.d("test", "onStart:  files " + files[i].getAbsolutePath());
-                    muList.add(files[i].getAbsolutePath());
+            for (File file: files) {
+
+                if(file.getName().endsWith(".mp4")){
+                    Log.d("test", "onStart:  files " + file.getAbsolutePath());
+                    muList.add(file.getAbsolutePath());
 
                 }
 
@@ -114,7 +110,11 @@ public class VideosFragment extends android.support.v4.app.Fragment {
         //Collections.reverse(muList);
         mReAdapter = new VideosFragment.myAdapter((ArrayList<String>) muList,getContext());
         recyclerView.setAdapter(mReAdapter);
-
+        if(muList.size()>0) {
+            recyclerView.setVisibility(View.VISIBLE);
+            tv.setVisibility(View.GONE);
+            cryingEmoji.setVisibility(View.GONE);
+        }
         Log.d("test2", "onStart: "+muList.size());
 
 

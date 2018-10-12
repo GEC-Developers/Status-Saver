@@ -40,9 +40,9 @@ public class showVideoItems extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_video_items);
         Bundle bundle = getIntent().getExtras();
-//        if (bundle == null) {
-//            return;
-//        }
+        if (bundle == null) {
+            return;
+        }
 
         MobileAds.initialize(this, "ca-app-pub-3781654628202166~6266376014");
 
