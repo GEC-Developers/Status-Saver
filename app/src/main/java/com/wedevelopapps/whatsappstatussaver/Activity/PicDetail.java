@@ -52,7 +52,6 @@ public class PicDetail extends AppCompatActivity {
     List<File> imagesList;
     CustomSliderAdapter myCustomPagerAdapter;
     ViewPager viewPager;
-    InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,19 +71,6 @@ public class PicDetail extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.picNavigation);
         backArrow = findViewById(R.id.backArrow);
 
-        MobileAds.initialize(this, "ca-app-pub-3781654628202166~6266376014");
-
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3781654628202166/9503322561");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                // Load the next interstitial.
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-
-        });
 
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
@@ -105,11 +91,9 @@ public class PicDetail extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.SetStatus:
                         setStatus();
-                        showInterstitial();
                         break;
                     case R.id.Download:
                         downloadImage();
-                        showInterstitial();
                         break;
                     case R.id.Share:
                         shareImage();
@@ -198,15 +182,6 @@ public class PicDetail extends AppCompatActivity {
     }
 
 
-    private void showInterstitial() {
-        // Show the ad if it's ready. Otherwise toast and restart the game.
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
-
-        }
-    }
 
 
     List fetchImages() {

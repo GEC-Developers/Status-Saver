@@ -37,7 +37,6 @@ public class ShowPictureItems extends AppCompatActivity {
     CustomSliderAdapter myCustomPagerAdapter;
     ViewPager viewPager;
     Uri iri2;
-    InterstitialAd mInterstitialAd;
 
 
     @Override
@@ -58,19 +57,7 @@ public class ShowPictureItems extends AppCompatActivity {
             Log.d("Error", "not parceable Int");
         }
 
-        MobileAds.initialize(this, "ca-app-pub-3781654628202166~6266376014");
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3781654628202166/9503322561");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                // Load the next interstitial.
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-
-        });
 
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
@@ -89,12 +76,10 @@ public class ShowPictureItems extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.Share:
-                        showInterstitial();
                         shareImage();
                         break;
                     case R.id.SetStatus:
                         setStatus();
-                        showInterstitial();
                         break;
                     case R.id.Delete:
                         deleteImage();
@@ -192,15 +177,6 @@ public class ShowPictureItems extends AppCompatActivity {
         }
     }
 
-    private void showInterstitial() {
-        // Show the ad if it's ready. Otherwise toast and restart the game.
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
-
-        }
-    }
 
     List fetchImages() {
         List<File> muList = new ArrayList<File>();

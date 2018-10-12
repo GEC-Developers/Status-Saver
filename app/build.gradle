@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
 
 
+
     implementation 'com.github.iammert:MaterialIntroView:1.6.0'
     implementation 'com.github.florent37:shapeofview:1.3.2'
     implementation 'com.holidaycheck:permissify:1.0.0'
