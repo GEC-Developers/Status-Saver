@@ -52,9 +52,9 @@ public class VideoDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_video_det);
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle == null) {
-            return;
-        }
+//        if (bundle == null) {
+//            return;
+//        }
         final String data = bundle.getString("dataKey");
         BottomNavigationView bottomNavigationView = findViewById(R.id.VideoNavigation);
         backArrow = findViewById(R.id.backArrow);
