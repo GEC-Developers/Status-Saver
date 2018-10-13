@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver;
+package com.tripleastudio.whatsappstatussaver;
 
 import org.junit.Test;
 

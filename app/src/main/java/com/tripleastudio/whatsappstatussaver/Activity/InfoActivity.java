@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Activity;
+package com.tripleastudio.whatsappstatussaver.Activity;
 
 
 import android.content.Intent;
@@ -8,11 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
-import com.wedevelopapps.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.R;
 
 public class InfoActivity extends AppCompatActivity {
 

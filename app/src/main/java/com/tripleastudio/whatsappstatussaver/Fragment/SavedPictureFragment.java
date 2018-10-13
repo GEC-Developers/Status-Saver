@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Fragment;
+package com.tripleastudio.whatsappstatussaver.Fragment;
 
 
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,14 +17,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-import com.wedevelopapps.whatsappstatussaver.Activity.PicDetail;
-import com.wedevelopapps.whatsappstatussaver.Activity.ShowPictureItems;
-import com.wedevelopapps.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.Activity.ShowPictureItems;
+import com.tripleastudio.whatsappstatussaver.R;
 
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
 

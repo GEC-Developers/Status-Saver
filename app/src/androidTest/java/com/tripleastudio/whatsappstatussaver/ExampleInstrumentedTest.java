@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver;
+package com.tripleastudio.whatsappstatussaver;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

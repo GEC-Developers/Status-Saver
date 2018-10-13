@@ -1,17 +1,15 @@
-package com.wedevelopapps.whatsappstatussaver.Activity;
+package com.tripleastudio.whatsappstatussaver.Activity;
 
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.wedevelopapps.whatsappstatussaver.Models.ListenableTabLayout;
-import com.wedevelopapps.whatsappstatussaver.Models.TabIndicatorFollower;
-import com.wedevelopapps.whatsappstatussaver.R;
-import com.wedevelopapps.whatsappstatussaver.SelectionsPageAdapter;
-import com.wedevelopapps.whatsappstatussaver.adapter.SavedGalleryAdapter;
+import com.tripleastudio.whatsappstatussaver.Models.ListenableTabLayout;
+import com.tripleastudio.whatsappstatussaver.Models.TabIndicatorFollower;
+import com.tripleastudio.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.adapter.SavedGalleryAdapter;
 
 public class SavedGallery extends AppCompatActivity {
 

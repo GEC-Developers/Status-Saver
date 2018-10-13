@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Activity;
+package com.tripleastudio.whatsappstatussaver.Activity;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,11 +19,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.github.chrisbanes.photoview.PhotoView;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
-import com.wedevelopapps.whatsappstatussaver.R;
-import com.wedevelopapps.whatsappstatussaver.adapter.CustomSliderAdapter;
+import com.tripleastudio.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.adapter.CustomSliderAdapter;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
@@ -34,11 +30,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import co.mobiwise.materialintro.shape.Focus;
-import co.mobiwise.materialintro.shape.FocusGravity;
-import co.mobiwise.materialintro.shape.ShapeType;
-import co.mobiwise.materialintro.view.MaterialIntroView;
 
 public class PicDetail extends AppCompatActivity {
 

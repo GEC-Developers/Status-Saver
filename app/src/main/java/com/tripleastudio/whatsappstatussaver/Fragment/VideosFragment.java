@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Fragment;
+package com.tripleastudio.whatsappstatussaver.Fragment;
 
 
 import android.app.ProgressDialog;
@@ -24,8 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.wedevelopapps.whatsappstatussaver.Activity.VideoDetailActivity;
-import com.wedevelopapps.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.Activity.VideoDetailActivity;
+import com.tripleastudio.whatsappstatussaver.R;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
@@ -92,9 +92,9 @@ public class VideosFragment extends android.support.v4.app.Fragment {
             Log.d("test", "onStart: " + files.length);
             Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
 
-            for (File file: files) {
+            for (File file : files) {
 
-                if(file.getName().endsWith(".mp4")){
+                if (file.getName().endsWith(".mp4")) {
                     Log.d("test", "onStart:  files " + file.getAbsolutePath());
                     muList.add(file.getAbsolutePath());
 
@@ -110,7 +110,7 @@ public class VideosFragment extends android.support.v4.app.Fragment {
         //Collections.reverse(muList);
         mReAdapter = new VideosFragment.myAdapter((ArrayList<String>) muList,getContext());
         recyclerView.setAdapter(mReAdapter);
-        if(muList.size()>0) {
+        if (muList.size() > 0) {
             recyclerView.setVisibility(View.VISIBLE);
             tv.setVisibility(View.GONE);
             cryingEmoji.setVisibility(View.GONE);

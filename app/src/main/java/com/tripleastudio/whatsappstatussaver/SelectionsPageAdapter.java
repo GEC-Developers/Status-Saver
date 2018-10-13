@@ -1,12 +1,12 @@
-package com.wedevelopapps.whatsappstatussaver;
+package com.tripleastudio.whatsappstatussaver;
 
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.wedevelopapps.whatsappstatussaver.Fragment.PictureFragment;
-import com.wedevelopapps.whatsappstatussaver.Fragment.VideosFragment;
+import com.tripleastudio.whatsappstatussaver.Fragment.PictureFragment;
+import com.tripleastudio.whatsappstatussaver.Fragment.VideosFragment;
 
 
 public class SelectionsPageAdapter extends FragmentPagerAdapter {

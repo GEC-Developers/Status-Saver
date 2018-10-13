@@ -20,7 +20,7 @@
             android:id="@+id/saved_gallery_toolbar"
             layout="@layout/app_tool_bar" />
 
-        <com.wedevelopapps.whatsappstatussaver.Models.ListenableTabLayout
+        <com.tripleastudio.whatsappstatussaver.Models.ListenableTabLayout
             android:id="@+id/saved_gallery_tabs"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"

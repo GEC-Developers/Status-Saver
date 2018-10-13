@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Fragment;
+package com.tripleastudio.whatsappstatussaver.Fragment;
 
 
 import android.content.ContentValues;
@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,8 +24,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-import com.wedevelopapps.whatsappstatussaver.Activity.PicDetail;
-import com.wedevelopapps.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.Activity.PicDetail;
+import com.tripleastudio.whatsappstatussaver.R;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
