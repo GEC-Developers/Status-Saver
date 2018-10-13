@@ -92,11 +92,7 @@ public class SavedVideoFragment extends Fragment {
             Log.d("test", "onStart: " + files.length);
             // String data[] = new String[0];
             Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
-            if (files.length > 0) {
-                recyclerView.setVisibility(View.VISIBLE);
-                tv.setVisibility(View.GONE);
-                cryingEmoji.setVisibility(View.GONE);
-            }
+
             for (int i = 0; i < files.length; i++) {
 
                 if (files[i].getName().endsWith(".mp4")) {
@@ -115,7 +111,11 @@ public class SavedVideoFragment extends Fragment {
         //Collections.reverse(muList);
         mReAdapter = new SavedVideoFragment.myAdapter((ArrayList<String>) muList, getContext());
         recyclerView.setAdapter(mReAdapter);
-
+        if (muList.size() > 0) {
+            recyclerView.setVisibility(View.VISIBLE);
+            tv.setVisibility(View.GONE);
+            cryingEmoji.setVisibility(View.GONE);
+        }
         Log.d("test2", "onStart: " + muList.size());
 
 
