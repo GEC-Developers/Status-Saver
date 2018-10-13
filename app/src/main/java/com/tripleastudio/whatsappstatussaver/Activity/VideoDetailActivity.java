@@ -19,10 +19,6 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.wedevelopapps.whatsappstatussaver.R;
 
 import org.apache.commons.io.FileUtils;
@@ -43,7 +39,6 @@ public class VideoDetailActivity extends AppCompatActivity {
     ImageView backArrow;
     Uri iri2;
     int time = 0;
-    InterstitialAd mInterstitialAd;
 
 
     @Override
@@ -65,19 +60,6 @@ public class VideoDetailActivity extends AppCompatActivity {
             }
         });
 
-        MobileAds.initialize(this, "ca-app-pub-3781654628202166~6266376014");
-
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3781654628202166/9503322561");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                // Load the next interstitial.
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-
-        });
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -85,8 +67,6 @@ public class VideoDetailActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.SetStatus:
-                        showInterstitial();
-
                         //Set Status
                         Intent setStatus = new Intent(Intent.ACTION_SEND);
                         setStatus.setPackage("com.whatsapp");
@@ -102,8 +82,6 @@ public class VideoDetailActivity extends AppCompatActivity {
                         break;
 
                     case R.id.Download:
-                        showInterstitial();
-
                         //Download Video
                         File f1, f2;
                         f1 = new File(Uri.parse(data).toString());
@@ -165,15 +143,6 @@ public class VideoDetailActivity extends AppCompatActivity {
 
     }
 
-    private void showInterstitial() {
-        // Show the ad if it's ready. Otherwise toast and restart the game.
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
-
-        }
-    }
 
 
  /*   @Override
