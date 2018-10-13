@@ -21,10 +21,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.wedevelopapps.whatsappstatussaver.R;

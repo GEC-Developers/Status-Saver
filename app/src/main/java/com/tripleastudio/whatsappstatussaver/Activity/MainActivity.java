@@ -34,7 +34,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.ads.MobileAds;
 import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
