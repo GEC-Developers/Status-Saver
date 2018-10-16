@@ -6,13 +6,13 @@ This app does not require any internet connection.
 
 # ScreenShots
 
-<img scr"github/pic1.png">
+<img scr="github/pic1.png">
 
-<img scr"github/pic2.png">
+<img scr="github/pic2.png">
 
-<img scr"github/pic3.png">
+<img scr="github/pic3.png">
 
-<img scr"github/pic4.png">
+<img scr="github/pic4.png">
 
 # Note
 
