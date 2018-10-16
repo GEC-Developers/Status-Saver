@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.SavedGallery">
-
+    tools:context="com.tripleastudio.whatsappstatussaver.Activity.SavedGallery">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/saved_gallery_appBarLayout"
         android:layout_width="match_parent"

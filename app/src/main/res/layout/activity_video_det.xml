@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark"
-    tools:context=".Activity.VideoDetailActivity">
-
+    tools:context="com.tripleastudio.whatsappstatussaver.Activity.VideoDetailActivity"
+    >
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

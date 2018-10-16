@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity">
+    tools:context="com.tripleastudio.whatsappstatussaver.Activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -41,8 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.github.florent37.shapeofview.shapes.TriangleView
         android:id="@+id/triangle"

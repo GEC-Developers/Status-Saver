@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Models;
+package com.tripleastudio.whatsappstatussaver.Models;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

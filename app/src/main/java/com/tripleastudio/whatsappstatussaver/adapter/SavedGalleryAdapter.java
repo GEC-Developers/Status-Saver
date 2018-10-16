@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.adapter;
+package com.tripleastudio.whatsappstatussaver.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

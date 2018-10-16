@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Activity;
+package com.tripleastudio.whatsappstatussaver.Activity;
 
 import android.Manifest;
 import android.app.AlarmManager;
@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -20,6 +21,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,16 +32,17 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.ads.MobileAds;
 import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
-import com.wedevelopapps.whatsappstatussaver.Models.ListenableTabLayout;
-import com.wedevelopapps.whatsappstatussaver.Models.TabIndicatorFollower;
+import com.tripleastudio.whatsappstatussaver.Models.ListenableTabLayout;
+import com.tripleastudio.whatsappstatussaver.Models.TabIndicatorFollower;
+import com.tripleastudio.whatsappstatussaver.adapter.SelectionsPageAdapter;
 import com.wedevelopapps.whatsappstatussaver.R;
-import com.wedevelopapps.whatsappstatussaver.adapter.SelectionsPageAdapter;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.Signature;
 import java.util.ArrayList;
 
 import co.mobiwise.materialintro.shape.Focus;
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> titleList;
     private BoomMenuButton bmb;
     Dialog HelpPopUp, rateUsPopUp;
+
 
 
     @Override
@@ -88,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolBar);
         getSupportActionBar().setTitle("WA Status Saver");
 
-        MobileAds.initialize(this, "ca-app-pub-3781654628202166~6266376014");
+
+        //printHashKey();
 
         HelpPopUp = new Dialog(this);
         rateUsPopUp = new Dialog(this);
@@ -164,6 +170,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+   /* public void printHashKey() {
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            for (android.content.pm.Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String hashKey = new String(Base64.encode(md.digest(), 0));
+                Log.i(TAG, "printHashKey() Hash Key: " + hashKey);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            Log.e(TAG, "printHashKey()", e);
+        } catch (Exception e) {
+            Log.e(TAG, "printHashKey()", e);
+        }
+    } **/
 
     private void setInitialData() {
         imageIDList.add(R.drawable.ic_image_black_24dp);

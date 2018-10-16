@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.adapter;
+package com.tripleastudio.whatsappstatussaver.adapter;
 
 
 
