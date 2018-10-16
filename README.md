@@ -6,13 +6,13 @@ This app does not require any internet connection.
 
 # ScreenShots
 
-<div id ="up" style = "float: left; width: 50%;">
+<div id ="up" style = "float: left; width: 50%; margin: 5px;">
 <img src="github/pic1.png">
 
 <img src="github/pic2.png">
 </div>
 
-<div id ="down" style = "float: left; width: 50%;">
+<div id ="down" style = "float: left; width: 50%; margin: 5px;">
 <img src="github/pic3.png">
 
 <img src="github/pic4.png">
