@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver;
+package com.wedevelopapps.whatsappstatussaver.adapter;
 
 
 import android.support.v4.app.Fragment;

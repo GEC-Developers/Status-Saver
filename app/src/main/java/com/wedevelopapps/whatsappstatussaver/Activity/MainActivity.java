@@ -13,14 +13,12 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,7 +37,7 @@ import com.nightonke.boommenu.Util;
 import com.wedevelopapps.whatsappstatussaver.Models.ListenableTabLayout;
 import com.wedevelopapps.whatsappstatussaver.Models.TabIndicatorFollower;
 import com.wedevelopapps.whatsappstatussaver.R;
-import com.wedevelopapps.whatsappstatussaver.SelectionsPageAdapter;
+import com.wedevelopapps.whatsappstatussaver.adapter.SelectionsPageAdapter;
 
 import java.util.ArrayList;
 

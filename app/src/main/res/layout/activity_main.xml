@@ -18,7 +18,8 @@
 
         <include
             android:id="@+id/main_page_toolbar"
-            layout="@layout/app_tool_bar" />
+            layout="@layout/app_tool_bar"
+            />
 
         <com.wedevelopapps.whatsappstatussaver.Models.ListenableTabLayout
             android:id="@+id/main_tabs"
