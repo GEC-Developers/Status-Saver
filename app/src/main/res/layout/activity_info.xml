@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:transitionName="fabTrans1"
-    tools:context=".Activity.InfoActivity"
+    tools:context="com.tripleastudio.whatsappstatussaver.Activity.InfoActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <TextView

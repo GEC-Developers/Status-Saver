@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Fragment;
+package com.tripleastudio.whatsappstatussaver.Fragment;
 
 
 import android.app.ProgressDialog;
@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.wedevelopapps.whatsappstatussaver.Activity.VideoDetailActivity;
+import com.tripleastudio.whatsappstatussaver.Activity.VideoDetailActivity;
 import com.wedevelopapps.whatsappstatussaver.R;
 
 import org.apache.commons.io.FileUtils;

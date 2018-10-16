@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Activity;
+package com.tripleastudio.whatsappstatussaver.Activity;
 
 import android.content.Intent;
 import android.media.MediaPlayer;

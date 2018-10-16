@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Activity;
+package com.tripleastudio.whatsappstatussaver.Activity;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -23,9 +23,8 @@ import android.widget.Toast;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.tripleastudio.whatsappstatussaver.adapter.CustomSliderAdapter;
 import com.wedevelopapps.whatsappstatussaver.R;
-import com.wedevelopapps.whatsappstatussaver.adapter.CustomSliderAdapter;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
 

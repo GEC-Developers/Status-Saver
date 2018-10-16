@@ -1,4 +1,4 @@
-package com.wedevelopapps.whatsappstatussaver.Activity;
+package com.tripleastudio.whatsappstatussaver.Activity;
 
 import android.Manifest;
 import android.app.AlarmManager;
@@ -14,14 +14,12 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
@@ -38,12 +36,11 @@ import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
-import com.wedevelopapps.whatsappstatussaver.Models.ListenableTabLayout;
-import com.wedevelopapps.whatsappstatussaver.Models.TabIndicatorFollower;
+import com.tripleastudio.whatsappstatussaver.Models.ListenableTabLayout;
+import com.tripleastudio.whatsappstatussaver.Models.TabIndicatorFollower;
+import com.tripleastudio.whatsappstatussaver.adapter.SelectionsPageAdapter;
 import com.wedevelopapps.whatsappstatussaver.R;
-import com.wedevelopapps.whatsappstatussaver.SelectionsPageAdapter;
 
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
 import java.util.ArrayList;
