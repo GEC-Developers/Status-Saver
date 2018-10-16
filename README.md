@@ -6,18 +6,22 @@ This app does not require any internet connection.
 
 # ScreenShots
 
-<div id ="up" style = "float: left; width: 25%;">
+<div id ="up" style = "float: left; width: 50%;">
 <img src="github/pic1.png">
 
 <img src="github/pic2.png">
 </div>
 
-<div id ="down" style = "float: left; width: 25%;">
+<div id ="down" style = "float: left; width: 50%;">
 <img src="github/pic3.png">
 
 <img src="github/pic4.png">
 
 </div>
+
+# Library Used
+
+
 
 # Note
 
@@ -27,7 +31,7 @@ This app does not gather any kind of data, nor it is affilated by whatsapp, this
 
 <h3> Feel free to contribute </h3>
 
-<i>For contributing just for your own repository and checkout as a neew branch, commit and then create a pull request with explaining the feature you have added or changed you made<i>
+<i>For contributing just fork your own repository and checkout as a new branch, commit and then create a pull request with explaining the feature you have added or changed you made<i>
 
 
 # Contributors
