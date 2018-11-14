@@ -160,16 +160,24 @@ public class VideosFragment extends android.support.v4.app.Fragment {
             File[] files = dir.listFiles();
             Log.d("test", "onStart: " + files.length);
             Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
-          /*  for (File file: files) {
-                if(list.contains(file.getName())){
-                    deleteFile(file);
-                    list.remove(file.getName());
-                }
-            }*/
-
             for (File file: files) {
-                if (list.remove(file.getName())) {
-                    deleteFile(file);
+                if(list.contains(file.getName())){
+
+                    file.delete();
+
+                    if (file.exists()) {
+                        try {
+                            file.getCanonicalFile().delete();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            if (file.exists()) {
+                                getContext().deleteFile(file.getName());
+                            }
+
+                        }
+
+                    }
                 }
             }
 
@@ -182,10 +190,6 @@ public class VideosFragment extends android.support.v4.app.Fragment {
 
     }
 
-    private void deleteFile(File file) {
-
-
-    }
 
 
     private void deleteUnusedThumbs(ArrayList<DataModel> mylist){
