@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tripleastudio.whatsappstatussaver.Activity.SavedGallery">
+    tools:context=".Activity.SavedGallery">
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/saved_gallery_appBarLayout"
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:id="@+id/saved_gallery_toolbar"
             layout="@layout/app_tool_bar" />
 
-        <com.wedevelopapps.whatsappstatussaver.Models.ListenableTabLayout
+        <com.tripleastudio.whatsappstatussaver.Models.ListenableTabLayout
             android:id="@+id/saved_gallery_tabs"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"

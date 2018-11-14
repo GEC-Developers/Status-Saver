@@ -4,8 +4,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.tripleastudio.whatsappstatussaver.Models.ListenableTabLayout;
-
 public class TabIndicatorFollower {
     private ListenableTabLayout tabLayout;
     private View indicatorView;

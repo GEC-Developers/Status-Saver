@@ -4,18 +4,15 @@ package com.tripleastudio.whatsappstatussaver.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-import com.wedevelopapps.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.R;
 
 import java.io.File;
 import java.util.List;

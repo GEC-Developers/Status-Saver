@@ -8,8 +8,9 @@ import android.view.View;
 
 import com.tripleastudio.whatsappstatussaver.Models.ListenableTabLayout;
 import com.tripleastudio.whatsappstatussaver.Models.TabIndicatorFollower;
+import com.tripleastudio.whatsappstatussaver.R;
 import com.tripleastudio.whatsappstatussaver.adapter.SavedGalleryAdapter;
-import com.wedevelopapps.whatsappstatussaver.R;
+
 public class SavedGallery extends AppCompatActivity {
 
     private Toolbar mToolBar;

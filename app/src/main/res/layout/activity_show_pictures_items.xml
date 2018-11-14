@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context="com.tripleastudio.whatsappstatussaver.Activity.ShowPictureItems">
+    tools:context=".Activity.ShowPictureItems">
+
     <android.support.v4.view.ViewPager
         android:id="@+id/showItemsviewPager"
         android:layout_width="match_parent"

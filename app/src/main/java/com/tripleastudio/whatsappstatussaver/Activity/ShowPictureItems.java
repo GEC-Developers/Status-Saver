@@ -16,8 +16,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.tripleastudio.whatsappstatussaver.R;
 import com.tripleastudio.whatsappstatussaver.adapter.CustomSliderAdapter;
-import com.wedevelopapps.whatsappstatussaver.R;
 
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
 

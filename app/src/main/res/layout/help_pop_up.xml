@@ -9,12 +9,11 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:background="@drawable/rate_us_gradient"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:elevation="8dp">
+        android:elevation="8dp"
+        android:gravity="center">
 
 
         <ImageView
@@ -22,9 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="7dp"
             android:layout_marginEnd="7dp"
-            android:layout_alignParentRight="true"
             android:src="@drawable/ic_close" />
 
         <LinearLayout
@@ -61,8 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginBottom="8dp"
                     android:text="-Check the Desired Status/Story..."
                     android:textSize="18sp" />
@@ -71,8 +70,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginBottom="8dp"
                     android:text="-Come Back to App, Click on any Image or Video To View..."
                     android:textSize="18sp" />
@@ -81,8 +80,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginBottom="8dp"
                     android:text="-Click the Download Button..."
                     android:textSize="18sp" />
@@ -91,8 +90,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginBottom="8dp"
                     android:text="The Image/Video is Instantly Saved to your Gallery :)"
                     android:textSize="18sp" />

@@ -2,7 +2,6 @@ package com.tripleastudio.whatsappstatussaver.Fragment;
 
 
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,19 +21,16 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.tripleastudio.whatsappstatussaver.Activity.showVideoItems;
-import com.wedevelopapps.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.R;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

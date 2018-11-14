@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context="com.tripleastudio.whatsappstatussaver.Activity.PicDetail"
-    >
+    tools:context=".Activity.PicDetail">
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/picNavigation"

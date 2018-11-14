@@ -4,14 +4,16 @@ import android.Manifest;
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -21,8 +23,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,11 +38,9 @@ import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
 import com.tripleastudio.whatsappstatussaver.Models.ListenableTabLayout;
 import com.tripleastudio.whatsappstatussaver.Models.TabIndicatorFollower;
-import com.tripleastudio.whatsappstatussaver.adapter.SelectionsPageAdapter;
-import com.wedevelopapps.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.SelectionsPageAdapter;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.Signature;
 import java.util.ArrayList;
 
 import co.mobiwise.materialintro.shape.Focus;
@@ -147,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                             } else if (index == 1) {
                                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                                 sharingIntent.setType("text/plain");
-                                String shareBody = "Download WhatsApp Status using PLAYSTORE LINK";
+                                String shareBody = "Download WhatsApp Status Saver using https://play.google.com/store/apps/details?id=com.tripleastudio.whatsappstatussaver";
                                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Songs of Zion ");
                                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
@@ -239,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
     private void ratePopup() {
         rateUsPopUp.setContentView(R.layout.rate_us_pop_up);
         Button exitApp = rateUsPopUp.findViewById(R.id.exitApp);
+        Button rateUs = rateUsPopUp.findViewById(R.id.rateUs);
         LinearLayout cancel = rateUsPopUp.findViewById(R.id.cancelButton);
 
         exitApp.setOnClickListener(new View.OnClickListener() {
@@ -255,9 +254,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        rateUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPlayStore();
+            }
+        });
+
         rateUsPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         rateUsPopUp.show();
 
+    }
+
+    public void goToPlayStore() {
+        String playStoreMarketUrl = "market://details?id=";
+        String playStoreWebUrl = "https://play.google.com/store/apps/details?id=";
+        String packageName = getPackageName();
+        try {
+            Intent intent =
+                    getPackageManager()
+                            .getLaunchIntentForPackage("com.android.vending");
+            if (intent != null) {
+                ComponentName androidComponent = new ComponentName("com.android.vending",
+                        "com.google.android.finsky.activities.LaunchUrlHandlerActivity");
+                intent.setComponent(androidComponent);
+                intent.setData(Uri.parse(playStoreMarketUrl + packageName));
+            } else {
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(playStoreMarketUrl + packageName));
+            }
+            startActivity(intent);
+        } catch (Resources.NotFoundException e) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(playStoreWebUrl + packageName));
+            startActivity(intent);
+        }
     }
 
     @Override

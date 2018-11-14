@@ -1,25 +1,27 @@
-package com.tripleastudio.whatsappstatussaver.adapter;
+package com.tripleastudio.whatsappstatussaver;
+
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.tripleastudio.whatsappstatussaver.Fragment.SavedPictureFragment;
-import com.tripleastudio.whatsappstatussaver.Fragment.SavedVideoFragment;
+import com.tripleastudio.whatsappstatussaver.Fragment.PictureFragment;
+import com.tripleastudio.whatsappstatussaver.Fragment.VideosFragment;
 
-public class SavedGalleryAdapter extends FragmentPagerAdapter {
-    public SavedGalleryAdapter(FragmentManager fm) {
+
+public class SelectionsPageAdapter extends FragmentPagerAdapter {
+    public SelectionsPageAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
+        switch (position){
             case 0:
-                SavedPictureFragment pictureFragment = new SavedPictureFragment();
+                PictureFragment pictureFragment = new PictureFragment();
                 return pictureFragment;
             case 1:
-                SavedVideoFragment videosFragment = new SavedVideoFragment();
+                VideosFragment videosFragment = new VideosFragment();
                 return videosFragment;
             default:
                 return null;
@@ -31,8 +33,8 @@ public class SavedGalleryAdapter extends FragmentPagerAdapter {
         return 2;
     }
 
-    public CharSequence getPageTitle(int position) {
-        switch (position) {
+    public CharSequence getPageTitle(int position){
+        switch (position){
             case 0:
                 return "PICTURES";
             case 1:

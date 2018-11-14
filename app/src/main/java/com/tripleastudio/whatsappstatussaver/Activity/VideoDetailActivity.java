@@ -2,16 +2,13 @@ package com.tripleastudio.whatsappstatussaver.Activity;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,17 +16,12 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.wedevelopapps.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.R;
 
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-
-import co.mobiwise.materialintro.shape.Focus;
-import co.mobiwise.materialintro.shape.FocusGravity;
-import co.mobiwise.materialintro.shape.ShapeType;
-import co.mobiwise.materialintro.view.MaterialIntroView;
 
 public class VideoDetailActivity extends AppCompatActivity {
 

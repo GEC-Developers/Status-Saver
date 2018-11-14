@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:617221212349:android:18a065df661bf73d",
         "android_client_info": {
-          "package_name": "com.wedevelopapps.whatsappstatussaver"
+          "package_name": "com.tripleastudio.whatsappstatussaver"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "617221212349-rifp72br8iekjhetghvkanrm4tfsv5tf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.wedevelopapps.whatsappstatussaver",
+            "package_name": "com.tripleastudio.whatsappstatussaver",
             "certificate_hash": "ab3a3788bb946eb5984ee556aa7c2ce84f2667be"
           }
         },
