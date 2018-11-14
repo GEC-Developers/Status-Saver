@@ -4,9 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.wedevelopapps.whatsappstatussaver.Fragment.SavedPictureFragment;
-import com.wedevelopapps.whatsappstatussaver.Fragment.SavedVideoFragment;
-
+import com.tripleastudio.whatsappstatussaver.Fragment.SavedPictureFragment;
+import com.tripleastudio.whatsappstatussaver.Fragment.SavedVideoFragment;
 public class SavedGalleryAdapter extends FragmentPagerAdapter {
     public SavedGalleryAdapter(FragmentManager fm) {
         super(fm);
