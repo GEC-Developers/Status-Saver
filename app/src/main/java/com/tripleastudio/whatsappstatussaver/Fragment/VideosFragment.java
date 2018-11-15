@@ -25,7 +25,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.tripleastudio.whatsappstatussaver.Activity.VideoDetailActivity;
-import com.tripleastudio.whatsappstatussaver.R;
+import com.tripleastudio.whatsappstatussaver.Models.DataModel;
+import com.wedevelopapps.whatsappstatussaver.R;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
@@ -82,9 +83,11 @@ public class VideosFragment extends android.support.v4.app.Fragment {
     public void onStart() {
         super.onStart();
         String data[] = new String[0];
-        List<String> muList = new ArrayList<String>();
-        try {
+        //TODO remove muList as mylist is used now
 
+        List<String> muList = new ArrayList<String>();
+        ArrayList<DataModel> myList= new ArrayList<>();
+        try {
             String path = Environment.getExternalStorageDirectory().toString() + "/WhatsApp/Media/.Statuses";
             Log.d("test", "onStart: " + path);
             File dir = new File(path);
@@ -92,12 +95,11 @@ public class VideosFragment extends android.support.v4.app.Fragment {
             Log.d("test", "onStart: " + files.length);
             Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
 
-            for (File file : files) {
-
-                if (file.getName().endsWith(".mp4")) {
+            for (File file: files) {
+                if(file.getName().endsWith(".mp4")){
                     Log.d("test", "onStart:  files " + file.getAbsolutePath());
-                    muList.add(file.getAbsolutePath());
-
+                   // muList.add(file.getAbsolutePath());
+                    myList.add(new DataModel(file.getAbsolutePath(),file.getName()));
                 }
 
 
@@ -108,9 +110,9 @@ public class VideosFragment extends android.support.v4.app.Fragment {
             // Toast.makeText(getContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
         }
         //Collections.reverse(muList);
-        mReAdapter = new VideosFragment.myAdapter((ArrayList<String>) muList,getContext());
+        mReAdapter = new VideosFragment.myAdapter(myList);
         recyclerView.setAdapter(mReAdapter);
-        if (muList.size() > 0) {
+        if(myList.size()>0) {
             recyclerView.setVisibility(View.VISIBLE);
             tv.setVisibility(View.GONE);
             cryingEmoji.setVisibility(View.GONE);
@@ -121,10 +123,86 @@ public class VideosFragment extends android.support.v4.app.Fragment {
 
     }
 
+    private ArrayList<String> findUnusedThumb(ArrayList<DataModel> mylist) {
+
+        ArrayList<String> allItems = new ArrayList<String>();
+        try {
+            String path = Environment.getExternalStorageDirectory().toString() + "/WhatsAppStatus/Videos/.Thum";
+            Log.d("test", "onStart: " + path);
+            File dir = new File(path);
+            File[] files = dir.listFiles();
+            Log.d("test", "onStart: " + files.length);
+            Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+            for (File file: files) {
+                if(file.getName().endsWith(".jpg")){
+                    Log.d("test", "onStart:  files " + file.getAbsolutePath());
+                    allItems.add(file.getName());
+                }
+            }
+        }catch (Exception ex){
+            // Toast.makeText(getContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
+        }
+        if (allItems.size() > 0) {
+            for(DataModel data:mylist){
+                allItems.remove(data.getFileName());
+            }
+        }
+        return allItems;
+    }
+
+    private void delete(ArrayList<String> list){
+
+        ArrayList<String> allItems = new ArrayList<String>();
+        try {
+            String path = Environment.getExternalStorageDirectory().toString() + "/WhatsAppStatus/Videos/.Thum";
+            Log.d("test", "onStart: " + path);
+            File dir = new File(path);
+            File[] files = dir.listFiles();
+            Log.d("test", "onStart: " + files.length);
+            Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+            for (File file: files) {
+                if(list.contains(file.getName())){
+
+                    file.delete();
+
+                    if (file.exists()) {
+                        try {
+                            file.getCanonicalFile().delete();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            if (file.exists()) {
+                                getContext().deleteFile(file.getName());
+                            }
+
+                        }
+
+                    }
+                }
+            }
+
+        }catch (Exception ex){
+            // Toast.makeText(getContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
+            Log.d("delete status","NOTHING To DELETE");
+        }
+
+
+
+    }
+
+
+
+    private void deleteUnusedThumbs(ArrayList<DataModel> mylist){
+
+        delete(findUnusedThumb(mylist));
+
+    }
+
 
     public class myAdapter extends RecyclerView.Adapter<VideosFragment.myAdapter.MyHolder>{
 
-        List<String> muList = new ArrayList<String>();
+        ArrayList<DataModel> myList;
+
         @Override
         public VideosFragment.myAdapter.MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.videos_template,parent,false);
@@ -134,14 +212,14 @@ public class VideosFragment extends android.support.v4.app.Fragment {
 
         @Override
         public void onBindViewHolder(final MyHolder holder, int position) {
-            final Uri iri = Uri.parse(muList.get(position));
-            File f = new File(muList.get(position));
+            final Uri iri = Uri.parse(myList.get(position).getPath());
+            File f = new File(myList.get(position).getPath());
 
+            deleteUnusedThumbs(myList);
 
             File thumFile = new File(Environment.getExternalStorageDirectory() + "/WhatsAppStatus/Videos/.Thum/" + f.getName() + ".jpg");
             if(!thumFile.exists()){
                 Bitmap bmap = ThumbnailUtils.createVideoThumbnail(iri.toString(), MediaStore.Video.Thumbnails.MINI_KIND);
-
                 String root = Environment.getExternalStorageDirectory().toString();
                 File myDir = new File(root + "/WhatsAppStatus/Videos/.Thum");
                 myDir.mkdirs();
@@ -200,7 +278,6 @@ public class VideosFragment extends android.support.v4.app.Fragment {
                     intent.putExtra("dataKey",iri.toString());
                     intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),holder.VidV,"videoTrans1");
-
                     startActivity(intent);
                 }
             });
@@ -210,11 +287,12 @@ public class VideosFragment extends android.support.v4.app.Fragment {
 
         @Override
         public int getItemCount() {
-            return muList.size();
+            return myList.size();
         }
 
-        public myAdapter(ArrayList<String> mylist, Context context) {
-            this.muList = mylist;
+        public myAdapter(ArrayList<DataModel> mylist) {
+            this.myList = mylist;
+
         }
 
         class MyHolder extends RecyclerView.ViewHolder{
