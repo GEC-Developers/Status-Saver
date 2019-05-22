@@ -5,7 +5,7 @@
 ###  Donate 
 If this project help you , you can give us a cup of coffee :) 
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](appswedevelop@gmail.com)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UASCED2UX6T7N)
 
 A simple Android Application to download Your contacts Status from whatsapp in a single click.
 This app does not require any internet connection.
